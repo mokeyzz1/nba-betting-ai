@@ -1,0 +1,254 @@
+Traceback (most recent call last):
+  File "/Users/mk/nba-betting-ai/get_odds.py", line 68, in <module>
+    df.to_csv(filename, index=False)
+  File "/Users/mk/nba-betting-ai/nba-env/lib/python3.11/site-packages/pandas/util/_decorators.py", line 333, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mk/nba-betting-ai/nba-env/lib/python3.11/site-packages/pandas/core/generic.py", line 3967, in to_csv
+    return DataFrameRenderer(formatter).to_csv(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mk/nba-betting-ai/nba-env/lib/python3.11/site-packages/pandas/io/formats/format.py", line 1014, in to_csv
+    csv_formatter.save()
+  File "/Users/mk/nba-betting-ai/nba-env/lib/python3.11/site-packages/pandas/io/formats/csvs.py", line 251, in save
+    with get_handle(
+         ^^^^^^^^^^^
+  File "/Users/mk/nba-betting-ai/nba-env/lib/python3.11/site-packages/pandas/io/common.py", line 749, in get_handle
+    check_parent_directory(str(handle))
+  File "/Users/mk/nba-betting-ai/nba-env/lib/python3.11/site-packages/pandas/io/common.py", line 616, in check_parent_directory
+    raise OSError(rf"Cannot save file into a non-existent directory: '{parent}'")
+OSError: Cannot save file into a non-existent directory: 'data'
+Traceback (most recent call last):
+  File "/Users/mk/nba-betting-ai/predict_today_api_only_1.py", line 5, in <module>
+    from get_team_stats import get_team_stats
+  File "/Users/mk/nba-betting-ai/get_team_stats.py", line 4, in <module>
+    team_stats_df = pd.read_csv("data/team_advanced_stats.csv")
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mk/nba-betting-ai/nba-env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mk/nba-betting-ai/nba-env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mk/nba-betting-ai/nba-env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mk/nba-betting-ai/nba-env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+                   ^^^^^^^^^^^
+  File "/Users/mk/nba-betting-ai/nba-env/lib/python3.11/site-packages/pandas/io/common.py", line 873, in get_handle
+    handle = open(
+             ^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'data/team_advanced_stats.csv'
+Traceback (most recent call last):
+  File "/Users/mk/nba-betting-ai/src/monitor/rolling_accuracy.py", line 16, in <module>
+    f for f in os.listdir(accuracy_dir)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'performance'
+Traceback (most recent call last):
+  File "/Users/mk/nba-betting-ai/get_odds.py", line 68, in <module>
+    df.to_csv(filename, index=False)
+  File "/Users/mk/nba-betting-ai/nba-env/lib/python3.11/site-packages/pandas/util/_decorators.py", line 333, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mk/nba-betting-ai/nba-env/lib/python3.11/site-packages/pandas/core/generic.py", line 3967, in to_csv
+    return DataFrameRenderer(formatter).to_csv(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mk/nba-betting-ai/nba-env/lib/python3.11/site-packages/pandas/io/formats/format.py", line 1014, in to_csv
+    csv_formatter.save()
+  File "/Users/mk/nba-betting-ai/nba-env/lib/python3.11/site-packages/pandas/io/formats/csvs.py", line 251, in save
+    with get_handle(
+         ^^^^^^^^^^^
+  File "/Users/mk/nba-betting-ai/nba-env/lib/python3.11/site-packages/pandas/io/common.py", line 749, in get_handle
+    check_parent_directory(str(handle))
+  File "/Users/mk/nba-betting-ai/nba-env/lib/python3.11/site-packages/pandas/io/common.py", line 616, in check_parent_directory
+    raise OSError(rf"Cannot save file into a non-existent directory: '{parent}'")
+OSError: Cannot save file into a non-existent directory: 'data'
+Traceback (most recent call last):
+  File "/Users/mk/nba-betting-ai/predict_today_api_only_1.py", line 5, in <module>
+    from get_team_stats import get_team_stats
+  File "/Users/mk/nba-betting-ai/get_team_stats.py", line 4, in <module>
+    team_stats_df = pd.read_csv("data/team_advanced_stats.csv")
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mk/nba-betting-ai/nba-env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mk/nba-betting-ai/nba-env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mk/nba-betting-ai/nba-env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mk/nba-betting-ai/nba-env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+                   ^^^^^^^^^^^
+  File "/Users/mk/nba-betting-ai/nba-env/lib/python3.11/site-packages/pandas/io/common.py", line 873, in get_handle
+    handle = open(
+             ^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'data/team_advanced_stats.csv'
+Traceback (most recent call last):
+  File "/Users/mk/nba-betting-ai/src/monitor/rolling_accuracy.py", line 16, in <module>
+    f for f in os.listdir(accuracy_dir)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'performance'
+Traceback (most recent call last):
+  File "/Users/mk/nba-betting-ai/get_odds.py", line 68, in <module>
+    df.to_csv(filename, index=False)
+  File "/Users/mk/nba-betting-ai/nba-env/lib/python3.11/site-packages/pandas/util/_decorators.py", line 333, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mk/nba-betting-ai/nba-env/lib/python3.11/site-packages/pandas/core/generic.py", line 3967, in to_csv
+    return DataFrameRenderer(formatter).to_csv(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mk/nba-betting-ai/nba-env/lib/python3.11/site-packages/pandas/io/formats/format.py", line 1014, in to_csv
+    csv_formatter.save()
+  File "/Users/mk/nba-betting-ai/nba-env/lib/python3.11/site-packages/pandas/io/formats/csvs.py", line 251, in save
+    with get_handle(
+         ^^^^^^^^^^^
+  File "/Users/mk/nba-betting-ai/nba-env/lib/python3.11/site-packages/pandas/io/common.py", line 749, in get_handle
+    check_parent_directory(str(handle))
+  File "/Users/mk/nba-betting-ai/nba-env/lib/python3.11/site-packages/pandas/io/common.py", line 616, in check_parent_directory
+    raise OSError(rf"Cannot save file into a non-existent directory: '{parent}'")
+OSError: Cannot save file into a non-existent directory: 'data'
+Traceback (most recent call last):
+  File "/Users/mk/nba-betting-ai/predict_today_api_only_1.py", line 6, in <module>
+    from get_team_stats import get_team_stats
+  File "/Users/mk/nba-betting-ai/get_team_stats.py", line 4, in <module>
+    team_stats_df = pd.read_csv("data/team_advanced_stats.csv")
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mk/nba-betting-ai/nba-env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mk/nba-betting-ai/nba-env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mk/nba-betting-ai/nba-env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mk/nba-betting-ai/nba-env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+                   ^^^^^^^^^^^
+  File "/Users/mk/nba-betting-ai/nba-env/lib/python3.11/site-packages/pandas/io/common.py", line 873, in get_handle
+    handle = open(
+             ^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'data/team_advanced_stats.csv'
+Traceback (most recent call last):
+  File "/Users/mk/nba-betting-ai/src/monitor/rolling_accuracy.py", line 16, in <module>
+    f for f in os.listdir(accuracy_dir)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'performance'
+Traceback (most recent call last):
+  File "/Users/mk/nba-betting-ai/get_odds.py", line 68, in <module>
+    df.to_csv(filename, index=False)
+  File "/Users/mk/nba-betting-ai/nba-env/lib/python3.11/site-packages/pandas/util/_decorators.py", line 333, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mk/nba-betting-ai/nba-env/lib/python3.11/site-packages/pandas/core/generic.py", line 3967, in to_csv
+    return DataFrameRenderer(formatter).to_csv(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mk/nba-betting-ai/nba-env/lib/python3.11/site-packages/pandas/io/formats/format.py", line 1014, in to_csv
+    csv_formatter.save()
+  File "/Users/mk/nba-betting-ai/nba-env/lib/python3.11/site-packages/pandas/io/formats/csvs.py", line 251, in save
+    with get_handle(
+         ^^^^^^^^^^^
+  File "/Users/mk/nba-betting-ai/nba-env/lib/python3.11/site-packages/pandas/io/common.py", line 749, in get_handle
+    check_parent_directory(str(handle))
+  File "/Users/mk/nba-betting-ai/nba-env/lib/python3.11/site-packages/pandas/io/common.py", line 616, in check_parent_directory
+    raise OSError(rf"Cannot save file into a non-existent directory: '{parent}'")
+OSError: Cannot save file into a non-existent directory: 'data'
+Traceback (most recent call last):
+  File "/Users/mk/nba-betting-ai/predict_today_api_only_1.py", line 6, in <module>
+    from get_team_stats import get_team_stats
+  File "/Users/mk/nba-betting-ai/get_team_stats.py", line 4, in <module>
+    team_stats_df = pd.read_csv("data/team_advanced_stats.csv")
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mk/nba-betting-ai/nba-env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mk/nba-betting-ai/nba-env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mk/nba-betting-ai/nba-env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mk/nba-betting-ai/nba-env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+                   ^^^^^^^^^^^
+  File "/Users/mk/nba-betting-ai/nba-env/lib/python3.11/site-packages/pandas/io/common.py", line 873, in get_handle
+    handle = open(
+             ^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'data/team_advanced_stats.csv'
+Traceback (most recent call last):
+  File "/Users/mk/nba-betting-ai/src/monitor/rolling_accuracy.py", line 16, in <module>
+    f for f in os.listdir(accuracy_dir)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'performance'
+Traceback (most recent call last):
+  File "/Users/mk/nba-betting-ai/get_odds.py", line 68, in <module>
+    df.to_csv(filename, index=False)
+  File "/Users/mk/nba-betting-ai/nba-env/lib/python3.11/site-packages/pandas/util/_decorators.py", line 333, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mk/nba-betting-ai/nba-env/lib/python3.11/site-packages/pandas/core/generic.py", line 3967, in to_csv
+    return DataFrameRenderer(formatter).to_csv(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mk/nba-betting-ai/nba-env/lib/python3.11/site-packages/pandas/io/formats/format.py", line 1014, in to_csv
+    csv_formatter.save()
+  File "/Users/mk/nba-betting-ai/nba-env/lib/python3.11/site-packages/pandas/io/formats/csvs.py", line 251, in save
+    with get_handle(
+         ^^^^^^^^^^^
+  File "/Users/mk/nba-betting-ai/nba-env/lib/python3.11/site-packages/pandas/io/common.py", line 749, in get_handle
+    check_parent_directory(str(handle))
+  File "/Users/mk/nba-betting-ai/nba-env/lib/python3.11/site-packages/pandas/io/common.py", line 616, in check_parent_directory
+    raise OSError(rf"Cannot save file into a non-existent directory: '{parent}'")
+OSError: Cannot save file into a non-existent directory: 'data'
+Traceback (most recent call last):
+  File "/Users/mk/nba-betting-ai/predict_today_api_only_1.py", line 6, in <module>
+    from get_team_stats import get_team_stats
+  File "/Users/mk/nba-betting-ai/get_team_stats.py", line 4, in <module>
+    team_stats_df = pd.read_csv("data/team_advanced_stats.csv")
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mk/nba-betting-ai/nba-env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mk/nba-betting-ai/nba-env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mk/nba-betting-ai/nba-env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mk/nba-betting-ai/nba-env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+                   ^^^^^^^^^^^
+  File "/Users/mk/nba-betting-ai/nba-env/lib/python3.11/site-packages/pandas/io/common.py", line 873, in get_handle
+    handle = open(
+             ^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'data/team_advanced_stats.csv'
+Traceback (most recent call last):
+  File "/Users/mk/nba-betting-ai/src/monitor/rolling_accuracy.py", line 16, in <module>
+    f for f in os.listdir(accuracy_dir)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'performance'
+Traceback (most recent call last):
+  File "/Users/mk/nba-betting-ai/run_pipeline.py", line 4, in <module>
+    from src.features.get_today_games_features import build_features
+  File "/Users/mk/nba-betting-ai/src/features/get_today_games_features.py", line 5, in <module>
+    from src.features.get_team_stats import get_team_stats
+  File "/Users/mk/nba-betting-ai/src/features/get_team_stats.py", line 4, in <module>
+    team_stats_df = pd.read_csv("data/team_advanced_stats.csv")
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mk/nba-betting-ai/nba-env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mk/nba-betting-ai/nba-env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mk/nba-betting-ai/nba-env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mk/nba-betting-ai/nba-env/lib/python3.11/site-packages/pandas/io/parsers/readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+                   ^^^^^^^^^^^
+  File "/Users/mk/nba-betting-ai/nba-env/lib/python3.11/site-packages/pandas/io/common.py", line 873, in get_handle
+    handle = open(
+             ^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'data/team_advanced_stats.csv'

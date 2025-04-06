@@ -1,0 +1,1214 @@
+
+🎯 Running prediction for today's games...
+❌ Failed to fetch odds: Command '['/Users/mk/nba-betting-ai/nba-env/bin/python', 'get_odds.py']' returned non-zero exit status 2.
+❌ Prediction failed: Command '['/Users/mk/nba-betting-ai/nba-env/bin/python', 'predict_today_api_only_1.py']' returned non-zero exit status 2.
+
+📊 Evaluation (only works if actual_winner column is added)...
+⚠️ Skipping evaluation — probably missing actual_winner data.
+⚠️ Rolling accuracy update failed: Command '['/Users/mk/nba-betting-ai/nba-env/bin/python', 'src/monitor/rolling_accuracy.py', 'v4_2']' returned non-zero exit status 2.
+               home_team           away_team  ...  away_odds         commence_time
+0          Orlando Magic    Sacramento Kings  ...       -115  2025-03-29T21:10:00Z
+1     Washington Wizards       Brooklyn Nets  ...       -116  2025-03-29T23:10:00Z
+2     Philadelphia 76ers          Miami Heat  ...       -323  2025-03-29T23:40:00Z
+3      San Antonio Spurs      Boston Celtics  ...       -667  2025-03-30T00:10:00Z
+4          Chicago Bulls    Dallas Mavericks  ...        114  2025-03-30T00:10:00Z
+5  Oklahoma City Thunder      Indiana Pacers  ...        395  2025-03-30T00:10:00Z
+6      Memphis Grizzlies  Los Angeles Lakers  ...        110  2025-03-30T00:10:00Z
+
+[7 rows x 5 columns]
+
+📅 Evaluating predictions for: 2025-03-28 using model v4_2
+❌ Prediction file not found: predictions/predictions_2025-03-28_v4_2.csv
+
+🎯 Running prediction for today's games...
+❌ Failed to fetch odds: Command '['/Users/mk/nba-betting-ai/nba-env/bin/python', '/Users/mk/nba-betting-ai/get_odds.py']' returned non-zero exit status 1.
+❌ Prediction failed: Command '['/Users/mk/nba-betting-ai/nba-env/bin/python', '/Users/mk/nba-betting-ai/predict_today_api_only_1.py']' returned non-zero exit status 1.
+
+📊 Evaluation (only works if actual_winner column is added)...
+⚠️ Rolling accuracy update failed: Command '['/Users/mk/nba-betting-ai/nba-env/bin/python', '/Users/mk/nba-betting-ai/src/monitor/rolling_accuracy.py', 'v4_2']' returned non-zero exit status 1.
+               home_team           away_team  ...  away_odds         commence_time
+0          Orlando Magic    Sacramento Kings  ...       -115  2025-03-29T21:10:00Z
+1     Washington Wizards       Brooklyn Nets  ...       -118  2025-03-29T23:10:00Z
+2     Philadelphia 76ers          Miami Heat  ...       -323  2025-03-29T23:40:00Z
+3      San Antonio Spurs      Boston Celtics  ...       -667  2025-03-30T00:10:00Z
+4          Chicago Bulls    Dallas Mavericks  ...        114  2025-03-30T00:10:00Z
+5  Oklahoma City Thunder      Indiana Pacers  ...        395  2025-03-30T00:10:00Z
+6      Memphis Grizzlies  Los Angeles Lakers  ...        110  2025-03-30T00:10:00Z
+
+[7 rows x 5 columns]
+
+✅ Odds saved to data/nba_odds_2025-03-29.csv
+🧠 Using Model: nba_model_v4_2.pkl (tuned + calibrated)
+
+🏀 Predictions for Today’s NBA Games:
+             hometeam           awayteam  home_odds  away_odds  model_win_prob  implied_home_win_pct  value_gap prediction  value_flag
+Oklahoma City Thunder     Indiana Pacers       -476        395        0.709015              0.002101   0.706914       HOME 👍 Value Bet
+        Chicago Bulls   Dallas Mavericks       -135        114        0.510070              0.007407   0.502662       HOME 👍 Value Bet
+    Memphis Grizzlies Los Angeles Lakers       -130        110        0.493235              0.007692   0.485542       AWAY 👍 Value Bet
+        Orlando Magic   Sacramento Kings       -105       -115        0.465712              0.009524   0.456188       AWAY 👍 Value Bet
+   Washington Wizards      Brooklyn Nets        100       -118        0.411736              0.010000   0.401736       AWAY 👍 Value Bet
+   Philadelphia 76ers         Miami Heat        260       -323        0.256957              0.003846   0.253111       AWAY 👍 Value Bet
+    San Antonio Spurs     Boston Celtics        470       -667        0.182163              0.002128   0.180035       AWAY 👍 Value Bet
+
+✅ Predictions saved to predictions/predictions_2025-03-29_v4_2.csv
+
+📅 Evaluating predictions for: 2025-03-28 using model v4_2
+
+✅ Model Accuracy: 85.71%
+
+📊 Classification Report:
+              precision    recall  f1-score   support
+AWAY           0.750000  1.000000  0.857143  3.000000
+HOME           1.000000  0.750000  0.857143  4.000000
+accuracy       0.857143  0.857143  0.857143  0.857143
+macro avg      0.875000  0.875000  0.857143  7.000000
+weighted avg   0.892857  0.857143  0.857143  7.000000
+
+📉 Confusion Matrix:
+             Predicted HOME  Predicted AWAY
+Actual HOME               3               1
+Actual AWAY               0               3
+
+💾 Saved evaluation to performance/accuracy_2025-03-28_v4_2.csv
+
+📈 Rolling Accuracy Overview:
+      date model  accuracy  rolling_accuracy
+2025-03-28  v4_2    0.8571            0.8571
+
+🔍 Matching file pattern: *_v4_2.csv
+📁 Files found: ['accuracy_2025-03-28_v4_2.csv']
+
+🎯 Running prediction for today's games...
+
+📊 Evaluation (only works if actual_winner column is added)...
+               home_team           away_team  ...  away_odds         commence_time
+0          Orlando Magic    Sacramento Kings  ...       -105  2025-03-29T21:10:00Z
+1     Washington Wizards       Brooklyn Nets  ...        110  2025-03-29T23:10:00Z
+2     Philadelphia 76ers          Miami Heat  ...       -345  2025-03-29T23:40:00Z
+3      San Antonio Spurs      Boston Celtics  ...       -833  2025-03-30T00:10:00Z
+4          Chicago Bulls    Dallas Mavericks  ...        124  2025-03-30T00:10:00Z
+5  Oklahoma City Thunder      Indiana Pacers  ...        360  2025-03-30T00:10:00Z
+6      Memphis Grizzlies  Los Angeles Lakers  ...        114  2025-03-30T00:10:00Z
+
+[7 rows x 5 columns]
+
+✅ Odds saved to data/nba_odds_2025-03-29.csv
+🧠 Using Model: nba_model_v4_2.pkl (tuned + calibrated)
+
+🏀 Predictions for Today’s NBA Games:
+             hometeam           awayteam  home_odds  away_odds  model_win_prob  implied_home_win_pct  value_gap prediction  value_flag
+Oklahoma City Thunder     Indiana Pacers       -455        360        0.709015              0.002198   0.706817       HOME 👍 Value Bet
+        Chicago Bulls   Dallas Mavericks       -147        124        0.524813              0.006803   0.518010       HOME 👍 Value Bet
+    Memphis Grizzlies Los Angeles Lakers       -135        114        0.493235              0.007407   0.485827       AWAY 👍 Value Bet
+        Orlando Magic   Sacramento Kings       -115       -105        0.483263              0.008696   0.474567       AWAY 👍 Value Bet
+   Washington Wizards      Brooklyn Nets       -130        110        0.447401              0.007692   0.439709       AWAY 👍 Value Bet
+   Philadelphia 76ers         Miami Heat        285       -345        0.256957              0.003509   0.253449       AWAY 👍 Value Bet
+    San Antonio Spurs     Boston Celtics        550       -833        0.182163              0.001818   0.180345       AWAY 👍 Value Bet
+
+✅ Predictions saved to predictions/predictions_2025-03-29_v4_2.csv
+
+📅 Evaluating predictions for: 2025-03-28 using model v4_2
+
+✅ Model Accuracy: 85.71%
+
+📊 Classification Report:
+              precision    recall  f1-score   support
+AWAY           0.750000  1.000000  0.857143  3.000000
+HOME           1.000000  0.750000  0.857143  4.000000
+accuracy       0.857143  0.857143  0.857143  0.857143
+macro avg      0.875000  0.875000  0.857143  7.000000
+weighted avg   0.892857  0.857143  0.857143  7.000000
+
+📉 Confusion Matrix:
+             Predicted HOME  Predicted AWAY
+Actual HOME               3               1
+Actual AWAY               0               3
+
+💾 Saved evaluation to performance/accuracy_2025-03-28_v4_2.csv
+
+📈 Rolling Accuracy Overview:
+      date model  accuracy  rolling_accuracy
+2025-03-28  v4_2    0.8571            0.8571
+
+🔍 Matching file pattern: *_v4_2.csv
+📁 Files found: ['accuracy_2025-03-28_v4_2.csv']
+
+🎯 Running prediction for today's games...
+
+📊 Evaluation (only works if actual_winner column is added)...
+⚠️ Failed to send predictions to Discord: [Errno 2] No such file or directory: 'python'
+                home_team  ...         commence_time
+0     Cleveland Cavaliers  ...  2025-03-30T19:40:00Z
+1         New York Knicks  ...  2025-03-30T22:10:00Z
+2         Milwaukee Bucks  ...  2025-03-30T23:10:00Z
+3    New Orleans Pelicans  ...  2025-03-30T23:10:00Z
+4  Minnesota Timberwolves  ...  2025-03-30T23:10:00Z
+5       San Antonio Spurs  ...  2025-03-30T23:10:00Z
+6      Philadelphia 76ers  ...  2025-03-30T23:40:00Z
+7            Phoenix Suns  ...  2025-03-31T01:10:00Z
+8          Indiana Pacers  ...  2025-03-31T23:10:00Z
+
+[9 rows x 5 columns]
+
+✅ Odds saved to data/nba_odds_2025-03-30.csv
+🧠 Using Model: nba_model_v4_2.pkl (tuned + calibrated)
+
+🏀 Predictions for Today’s NBA Games:
+              hometeam               awayteam  home_odds  away_odds  model_win_prob  implied_home_win_pct  value_gap prediction  value_flag
+   Cleveland Cavaliers   Los Angeles Clippers       -270        220        0.728650              0.003704   0.724946       HOME 👍 Value Bet
+       New York Knicks Portland Trail Blazers       -333        270        0.724282              0.003003   0.721279       HOME 👍 Value Bet
+Minnesota Timberwolves        Detroit Pistons       -270        220        0.709015              0.003704   0.705311       HOME 👍 Value Bet
+        Indiana Pacers       Sacramento Kings       -189        160        0.684240              0.005291   0.678949       HOME 👍 Value Bet
+       Milwaukee Bucks          Atlanta Hawks       -175        145        0.558259              0.005714   0.552545       HOME 👍 Value Bet
+          Phoenix Suns        Houston Rockets        115       -135        0.526257              0.008696   0.517561       HOME 👍 Value Bet
+  New Orleans Pelicans      Charlotte Hornets       -147        126        0.472804              0.006803   0.466002       AWAY 👍 Value Bet
+    Philadelphia 76ers        Toronto Raptors        220       -270        0.348113              0.004545   0.343567       AWAY 👍 Value Bet
+     San Antonio Spurs  Golden State Warriors        470       -667        0.182163              0.002128   0.180035       AWAY 👍 Value Bet
+
+✅ Predictions saved to predictions/predictions_2025-03-30_v4_2.csv
+
+📅 Evaluating predictions for: 2025-03-29 using model v4_2
+
+✅ Model Accuracy: 71.43%
+
+📊 Classification Report:
+              precision    recall  f1-score   support
+AWAY           0.800000  0.800000  0.800000  5.000000
+HOME           0.500000  0.500000  0.500000  2.000000
+accuracy       0.714286  0.714286  0.714286  0.714286
+macro avg      0.650000  0.650000  0.650000  7.000000
+weighted avg   0.714286  0.714286  0.714286  7.000000
+
+📉 Confusion Matrix:
+             Predicted HOME  Predicted AWAY
+Actual HOME               1               1
+Actual AWAY               1               4
+
+💾 Saved evaluation to performance/accuracy_2025-03-29_v4_2.csv
+
+📈 Rolling Accuracy Overview:
+      date model  accuracy  rolling_accuracy
+2025-03-28  v4_2    0.8571            0.8571
+2025-03-29  v4_2    0.7143            0.7857
+
+🔍 Matching file pattern: *_v4_2.csv
+📁 Files found: ['accuracy_2025-03-28_v4_2.csv', 'accuracy_2025-03-29_v4_2.csv']
+
+🎯 Running prediction for today's games...
+
+📊 Evaluation (only works if actual_winner column is added)...
+⚠️ Failed to send predictions to Discord: [Errno 2] No such file or directory: 'python'
+               home_team             away_team  ...  away_odds         commence_time
+0      Charlotte Hornets             Utah Jazz  ...        120  2025-03-31T23:10:00Z
+1         Indiana Pacers      Sacramento Kings  ...        184  2025-03-31T23:10:00Z
+2          Orlando Magic  Los Angeles Clippers  ...       -143  2025-03-31T23:10:00Z
+3     Washington Wizards            Miami Heat  ...       -370  2025-03-31T23:10:00Z
+4      Memphis Grizzlies        Boston Celtics  ...       -189  2025-03-31T23:40:00Z
+5  Oklahoma City Thunder         Chicago Bulls  ...        700  2025-04-01T00:10:00Z
+6       Dallas Mavericks         Brooklyn Nets  ...        320  2025-04-01T00:40:00Z
+7     Los Angeles Lakers       Houston Rockets  ...        155  2025-04-01T02:10:00Z
+
+[8 rows x 5 columns]
+
+✅ Odds saved to data/nba_odds_2025-03-31.csv
+🧠 Using Model: nba_model_v4_2.pkl (tuned + calibrated)
+
+🏀 Predictions for Today’s NBA Games:
+             hometeam             awayteam  home_odds  away_odds  model_win_prob  implied_home_win_pct  value_gap prediction  value_flag
+Oklahoma City Thunder        Chicago Bulls      -1111        700        0.879417              0.000900   0.878517       HOME 👍 Value Bet
+     Dallas Mavericks        Brooklyn Nets       -417        320        0.754043              0.002398   0.751644       HOME 👍 Value Bet
+       Indiana Pacers     Sacramento Kings       -222        184        0.706963              0.004505   0.702458       HOME 👍 Value Bet
+   Los Angeles Lakers      Houston Rockets       -175        155        0.593804              0.005714   0.588090       HOME 👍 Value Bet
+    Charlotte Hornets            Utah Jazz       -143        120        0.469214              0.006993   0.462221       AWAY 👍 Value Bet
+    Memphis Grizzlies       Boston Celtics        165       -189        0.440209              0.006061   0.434148       AWAY 👍 Value Bet
+        Orlando Magic Los Angeles Clippers        122       -143        0.386260              0.008197   0.378063       AWAY 👍 Value Bet
+   Washington Wizards           Miami Heat        305       -370        0.177560              0.003279   0.174281       AWAY 👍 Value Bet
+
+✅ Predictions saved to predictions/predictions_2025-03-31_v4_2.csv
+
+📅 Evaluating predictions for: 2025-03-30 using model v4_2
+
+✅ Model Accuracy: 75.00%
+
+📊 Classification Report:
+              precision    recall  f1-score  support
+AWAY           0.666667  0.666667  0.666667     3.00
+HOME           0.800000  0.800000  0.800000     5.00
+accuracy       0.750000  0.750000  0.750000     0.75
+macro avg      0.733333  0.733333  0.733333     8.00
+weighted avg   0.750000  0.750000  0.750000     8.00
+
+📉 Confusion Matrix:
+             Predicted HOME  Predicted AWAY
+Actual HOME               4               1
+Actual AWAY               1               2
+
+💾 Saved evaluation to performance/accuracy_2025-03-30_v4_2.csv
+
+📈 Rolling Accuracy Overview:
+      date model  accuracy  rolling_accuracy
+2025-03-28  v4_2    0.8571            0.8571
+2025-03-29  v4_2    0.7143            0.7857
+2025-03-30  v4_2    0.7500            0.7738
+
+🔍 Matching file pattern: *_v4_2.csv
+📁 Files found: ['accuracy_2025-03-28_v4_2.csv', 'accuracy_2025-03-29_v4_2.csv', 'accuracy_2025-03-30_v4_2.csv']
+
+🎯 Running prediction for today's games...
+
+📊 Evaluation (only works if actual_winner column is added)...
+⚠️ Failed to send predictions to Discord: [Errno 2] No such file or directory: 'python'
+               home_team             away_team  ...  away_odds         commence_time
+0      Charlotte Hornets             Utah Jazz  ...        120  2025-03-31T23:10:00Z
+1         Indiana Pacers      Sacramento Kings  ...        184  2025-03-31T23:10:00Z
+2          Orlando Magic  Los Angeles Clippers  ...       -143  2025-03-31T23:10:00Z
+3     Washington Wizards            Miami Heat  ...       -370  2025-03-31T23:10:00Z
+4      Memphis Grizzlies        Boston Celtics  ...       -189  2025-03-31T23:40:00Z
+5  Oklahoma City Thunder         Chicago Bulls  ...        700  2025-04-01T00:10:00Z
+6       Dallas Mavericks         Brooklyn Nets  ...        320  2025-04-01T00:40:00Z
+7     Los Angeles Lakers       Houston Rockets  ...        155  2025-04-01T02:10:00Z
+
+[8 rows x 5 columns]
+
+✅ Odds saved to data/nba_odds_2025-03-31.csv
+🧠 Using Model: nba_model_v4_2.pkl (tuned + calibrated)
+
+🏀 Predictions for Today’s NBA Games:
+             hometeam             awayteam  home_odds  away_odds  model_win_prob  implied_home_win_pct  value_gap prediction  value_flag
+Oklahoma City Thunder        Chicago Bulls      -1111        700        0.879417              0.000900   0.878517       HOME 👍 Value Bet
+     Dallas Mavericks        Brooklyn Nets       -417        320        0.754043              0.002398   0.751644       HOME 👍 Value Bet
+       Indiana Pacers     Sacramento Kings       -222        184        0.706963              0.004505   0.702458       HOME 👍 Value Bet
+   Los Angeles Lakers      Houston Rockets       -175        155        0.593804              0.005714   0.588090       HOME 👍 Value Bet
+    Charlotte Hornets            Utah Jazz       -143        120        0.469214              0.006993   0.462221       AWAY 👍 Value Bet
+    Memphis Grizzlies       Boston Celtics        165       -189        0.440209              0.006061   0.434148       AWAY 👍 Value Bet
+        Orlando Magic Los Angeles Clippers        122       -143        0.386260              0.008197   0.378063       AWAY 👍 Value Bet
+   Washington Wizards           Miami Heat        305       -370        0.177560              0.003279   0.174281       AWAY 👍 Value Bet
+
+✅ Predictions saved to predictions/predictions_2025-03-31_v4_2.csv
+
+📅 Evaluating predictions for: 2025-03-30 using model v4_2
+
+✅ Model Accuracy: 75.00%
+
+📊 Classification Report:
+              precision    recall  f1-score  support
+AWAY           0.666667  0.666667  0.666667     3.00
+HOME           0.800000  0.800000  0.800000     5.00
+accuracy       0.750000  0.750000  0.750000     0.75
+macro avg      0.733333  0.733333  0.733333     8.00
+weighted avg   0.750000  0.750000  0.750000     8.00
+
+📉 Confusion Matrix:
+             Predicted HOME  Predicted AWAY
+Actual HOME               4               1
+Actual AWAY               1               2
+
+💾 Saved evaluation to performance/accuracy_2025-03-30_v4_2.csv
+
+📈 Rolling Accuracy Overview:
+      date model  accuracy  rolling_accuracy
+2025-03-28  v4_2    0.8571            0.8571
+2025-03-29  v4_2    0.7143            0.7857
+2025-03-30  v4_2    0.7500            0.7738
+
+🔍 Matching file pattern: *_v4_2.csv
+📁 Files found: ['accuracy_2025-03-28_v4_2.csv', 'accuracy_2025-03-29_v4_2.csv', 'accuracy_2025-03-30_v4_2.csv']
+
+🎯 Running prediction for today's games...
+
+📊 Evaluation (only works if actual_winner column is added)...
+⚠️ Failed to send predictions to Discord: [Errno 2] No such file or directory: 'python'
+               home_team             away_team  ...  away_odds         commence_time
+0      Charlotte Hornets             Utah Jazz  ...        120  2025-03-31T23:10:00Z
+1         Indiana Pacers      Sacramento Kings  ...        184  2025-03-31T23:10:00Z
+2          Orlando Magic  Los Angeles Clippers  ...       -143  2025-03-31T23:10:00Z
+3     Washington Wizards            Miami Heat  ...       -370  2025-03-31T23:10:00Z
+4      Memphis Grizzlies        Boston Celtics  ...       -189  2025-03-31T23:40:00Z
+5  Oklahoma City Thunder         Chicago Bulls  ...        700  2025-04-01T00:10:00Z
+6       Dallas Mavericks         Brooklyn Nets  ...        320  2025-04-01T00:40:00Z
+7     Los Angeles Lakers       Houston Rockets  ...        155  2025-04-01T02:10:00Z
+
+[8 rows x 5 columns]
+
+✅ Odds saved to data/nba_odds_2025-03-31.csv
+🧠 Using Model: nba_model_v4_2.pkl (tuned + calibrated)
+
+🏀 Predictions for Today’s NBA Games:
+             hometeam             awayteam  home_odds  away_odds  model_win_prob  implied_home_win_pct  value_gap prediction  value_flag
+Oklahoma City Thunder        Chicago Bulls      -1111        700        0.879417              0.000900   0.878517       HOME 👍 Value Bet
+     Dallas Mavericks        Brooklyn Nets       -417        320        0.754043              0.002398   0.751644       HOME 👍 Value Bet
+       Indiana Pacers     Sacramento Kings       -222        184        0.706963              0.004505   0.702458       HOME 👍 Value Bet
+   Los Angeles Lakers      Houston Rockets       -175        155        0.593804              0.005714   0.588090       HOME 👍 Value Bet
+    Charlotte Hornets            Utah Jazz       -143        120        0.469214              0.006993   0.462221       AWAY 👍 Value Bet
+    Memphis Grizzlies       Boston Celtics        165       -189        0.440209              0.006061   0.434148       AWAY 👍 Value Bet
+        Orlando Magic Los Angeles Clippers        122       -143        0.386260              0.008197   0.378063       AWAY 👍 Value Bet
+   Washington Wizards           Miami Heat        305       -370        0.177560              0.003279   0.174281       AWAY 👍 Value Bet
+
+✅ Predictions saved to predictions/predictions_2025-03-31_v4_2.csv
+
+📅 Evaluating predictions for: 2025-03-30 using model v4_2
+
+✅ Model Accuracy: 75.00%
+
+📊 Classification Report:
+              precision    recall  f1-score  support
+AWAY           0.666667  0.666667  0.666667     3.00
+HOME           0.800000  0.800000  0.800000     5.00
+accuracy       0.750000  0.750000  0.750000     0.75
+macro avg      0.733333  0.733333  0.733333     8.00
+weighted avg   0.750000  0.750000  0.750000     8.00
+
+📉 Confusion Matrix:
+             Predicted HOME  Predicted AWAY
+Actual HOME               4               1
+Actual AWAY               1               2
+
+💾 Saved evaluation to performance/accuracy_2025-03-30_v4_2.csv
+
+📈 Rolling Accuracy Overview:
+      date model  accuracy  rolling_accuracy
+2025-03-28  v4_2    0.8571            0.8571
+2025-03-29  v4_2    0.7143            0.7857
+2025-03-30  v4_2    0.7500            0.7738
+
+🔍 Matching file pattern: *_v4_2.csv
+📁 Files found: ['accuracy_2025-03-28_v4_2.csv', 'accuracy_2025-03-29_v4_2.csv', 'accuracy_2025-03-30_v4_2.csv']
+
+🎯 Running prediction for today's games...
+
+📊 Evaluation (only works if actual_winner column is added)...
+⚠️ Failed to send predictions to Discord: [Errno 2] No such file or directory: 'python'
+               home_team             away_team  ...  away_odds         commence_time
+0      Charlotte Hornets             Utah Jazz  ...        120  2025-03-31T23:10:00Z
+1         Indiana Pacers      Sacramento Kings  ...        184  2025-03-31T23:10:00Z
+2          Orlando Magic  Los Angeles Clippers  ...       -143  2025-03-31T23:10:00Z
+3     Washington Wizards            Miami Heat  ...       -370  2025-03-31T23:10:00Z
+4      Memphis Grizzlies        Boston Celtics  ...       -189  2025-03-31T23:40:00Z
+5  Oklahoma City Thunder         Chicago Bulls  ...        700  2025-04-01T00:10:00Z
+6       Dallas Mavericks         Brooklyn Nets  ...        320  2025-04-01T00:40:00Z
+7     Los Angeles Lakers       Houston Rockets  ...        155  2025-04-01T02:10:00Z
+
+[8 rows x 5 columns]
+
+✅ Odds saved to data/nba_odds_2025-03-31.csv
+🧠 Using Model: nba_model_v4_2.pkl (tuned + calibrated)
+
+🏀 Predictions for Today’s NBA Games:
+             hometeam             awayteam  home_odds  away_odds  model_win_prob  implied_home_win_pct  value_gap prediction  value_flag
+Oklahoma City Thunder        Chicago Bulls      -1111        700        0.879417              0.000900   0.878517       HOME 👍 Value Bet
+     Dallas Mavericks        Brooklyn Nets       -417        320        0.754043              0.002398   0.751644       HOME 👍 Value Bet
+       Indiana Pacers     Sacramento Kings       -222        184        0.706963              0.004505   0.702458       HOME 👍 Value Bet
+   Los Angeles Lakers      Houston Rockets       -175        155        0.593804              0.005714   0.588090       HOME 👍 Value Bet
+    Charlotte Hornets            Utah Jazz       -143        120        0.469214              0.006993   0.462221       AWAY 👍 Value Bet
+    Memphis Grizzlies       Boston Celtics        165       -189        0.440209              0.006061   0.434148       AWAY 👍 Value Bet
+        Orlando Magic Los Angeles Clippers        122       -143        0.386260              0.008197   0.378063       AWAY 👍 Value Bet
+   Washington Wizards           Miami Heat        305       -370        0.177560              0.003279   0.174281       AWAY 👍 Value Bet
+
+✅ Predictions saved to predictions/predictions_2025-03-31_v4_2.csv
+
+📅 Evaluating predictions for: 2025-03-30 using model v4_2
+
+✅ Model Accuracy: 75.00%
+
+📊 Classification Report:
+              precision    recall  f1-score  support
+AWAY           0.666667  0.666667  0.666667     3.00
+HOME           0.800000  0.800000  0.800000     5.00
+accuracy       0.750000  0.750000  0.750000     0.75
+macro avg      0.733333  0.733333  0.733333     8.00
+weighted avg   0.750000  0.750000  0.750000     8.00
+
+📉 Confusion Matrix:
+             Predicted HOME  Predicted AWAY
+Actual HOME               4               1
+Actual AWAY               1               2
+
+💾 Saved evaluation to performance/accuracy_2025-03-30_v4_2.csv
+
+📈 Rolling Accuracy Overview:
+      date model  accuracy  rolling_accuracy
+2025-03-28  v4_2    0.8571            0.8571
+2025-03-29  v4_2    0.7143            0.7857
+2025-03-30  v4_2    0.7500            0.7738
+
+🔍 Matching file pattern: *_v4_2.csv
+📁 Files found: ['accuracy_2025-03-28_v4_2.csv', 'accuracy_2025-03-29_v4_2.csv', 'accuracy_2025-03-30_v4_2.csv']
+
+🎯 Running prediction for today's games...
+
+📊 Evaluation (only works if actual_winner column is added)...
+⚠️ Failed to send predictions to Discord: [Errno 2] No such file or directory: 'python'
+               home_team             away_team  ...  away_odds         commence_time
+0      Charlotte Hornets             Utah Jazz  ...        120  2025-03-31T23:10:00Z
+1         Indiana Pacers      Sacramento Kings  ...        184  2025-03-31T23:10:00Z
+2          Orlando Magic  Los Angeles Clippers  ...       -143  2025-03-31T23:10:00Z
+3     Washington Wizards            Miami Heat  ...       -370  2025-03-31T23:10:00Z
+4      Memphis Grizzlies        Boston Celtics  ...       -189  2025-03-31T23:40:00Z
+5  Oklahoma City Thunder         Chicago Bulls  ...        700  2025-04-01T00:10:00Z
+6       Dallas Mavericks         Brooklyn Nets  ...        320  2025-04-01T00:40:00Z
+7     Los Angeles Lakers       Houston Rockets  ...        155  2025-04-01T02:10:00Z
+
+[8 rows x 5 columns]
+
+✅ Odds saved to data/nba_odds_2025-03-31.csv
+🧠 Using Model: nba_model_v4_2.pkl (tuned + calibrated)
+
+🏀 Predictions for Today’s NBA Games:
+             hometeam             awayteam  home_odds  away_odds  model_win_prob  implied_home_win_pct  value_gap prediction  value_flag
+Oklahoma City Thunder        Chicago Bulls      -1111        700        0.879417              0.000900   0.878517       HOME 👍 Value Bet
+     Dallas Mavericks        Brooklyn Nets       -417        320        0.754043              0.002398   0.751644       HOME 👍 Value Bet
+       Indiana Pacers     Sacramento Kings       -222        184        0.706963              0.004505   0.702458       HOME 👍 Value Bet
+   Los Angeles Lakers      Houston Rockets       -175        155        0.593804              0.005714   0.588090       HOME 👍 Value Bet
+    Charlotte Hornets            Utah Jazz       -143        120        0.469214              0.006993   0.462221       AWAY 👍 Value Bet
+    Memphis Grizzlies       Boston Celtics        165       -189        0.440209              0.006061   0.434148       AWAY 👍 Value Bet
+        Orlando Magic Los Angeles Clippers        122       -143        0.386260              0.008197   0.378063       AWAY 👍 Value Bet
+   Washington Wizards           Miami Heat        305       -370        0.177560              0.003279   0.174281       AWAY 👍 Value Bet
+
+✅ Predictions saved to predictions/predictions_2025-03-31_v4_2.csv
+
+📅 Evaluating predictions for: 2025-03-30 using model v4_2
+
+✅ Model Accuracy: 75.00%
+
+📊 Classification Report:
+              precision    recall  f1-score  support
+AWAY           0.666667  0.666667  0.666667     3.00
+HOME           0.800000  0.800000  0.800000     5.00
+accuracy       0.750000  0.750000  0.750000     0.75
+macro avg      0.733333  0.733333  0.733333     8.00
+weighted avg   0.750000  0.750000  0.750000     8.00
+
+📉 Confusion Matrix:
+             Predicted HOME  Predicted AWAY
+Actual HOME               4               1
+Actual AWAY               1               2
+
+💾 Saved evaluation to performance/accuracy_2025-03-30_v4_2.csv
+
+📈 Rolling Accuracy Overview:
+      date model  accuracy  rolling_accuracy
+2025-03-28  v4_2    0.8571            0.8571
+2025-03-29  v4_2    0.7143            0.7857
+2025-03-30  v4_2    0.7500            0.7738
+
+🔍 Matching file pattern: *_v4_2.csv
+📁 Files found: ['accuracy_2025-03-28_v4_2.csv', 'accuracy_2025-03-29_v4_2.csv', 'accuracy_2025-03-30_v4_2.csv']
+
+🎯 Running prediction for today's games...
+
+📊 Evaluation (only works if actual_winner column is added)...
+⚠️ Failed to send predictions to Discord: [Errno 2] No such file or directory: 'python'
+               home_team             away_team  ...  away_odds         commence_time
+0      Charlotte Hornets             Utah Jazz  ...        120  2025-03-31T23:10:00Z
+1         Indiana Pacers      Sacramento Kings  ...        164  2025-03-31T23:10:00Z
+2          Orlando Magic  Los Angeles Clippers  ...       -143  2025-03-31T23:10:00Z
+3     Washington Wizards            Miami Heat  ...       -370  2025-03-31T23:10:00Z
+4      Memphis Grizzlies        Boston Celtics  ...       -189  2025-03-31T23:40:00Z
+5  Oklahoma City Thunder         Chicago Bulls  ...        660  2025-04-01T00:10:00Z
+6       Dallas Mavericks         Brooklyn Nets  ...        320  2025-04-01T00:40:00Z
+7     Los Angeles Lakers       Houston Rockets  ...        155  2025-04-01T02:10:00Z
+
+[8 rows x 5 columns]
+
+✅ Odds saved to data/nba_odds_2025-03-31.csv
+🧠 Using Model: nba_model_v4_2.pkl (tuned + calibrated)
+
+🏀 Predictions for Today’s NBA Games:
+             hometeam             awayteam  home_odds  away_odds  model_win_prob  implied_home_win_pct  value_gap prediction  value_flag
+Oklahoma City Thunder        Chicago Bulls      -1000        660        0.879417              0.001000   0.878417       HOME 👍 Value Bet
+     Dallas Mavericks        Brooklyn Nets       -417        320        0.754043              0.002398   0.751644       HOME 👍 Value Bet
+       Indiana Pacers     Sacramento Kings       -196        164        0.684240              0.005102   0.679138       HOME 👍 Value Bet
+   Los Angeles Lakers      Houston Rockets       -175        155        0.593804              0.005714   0.588090       HOME 👍 Value Bet
+    Charlotte Hornets            Utah Jazz       -143        120        0.469214              0.006993   0.462221       AWAY 👍 Value Bet
+    Memphis Grizzlies       Boston Celtics        165       -189        0.440209              0.006061   0.434148       AWAY 👍 Value Bet
+        Orlando Magic Los Angeles Clippers        122       -143        0.386260              0.008197   0.378063       AWAY 👍 Value Bet
+   Washington Wizards           Miami Heat        305       -370        0.177560              0.003279   0.174281       AWAY 👍 Value Bet
+
+✅ Predictions saved to predictions/predictions_2025-03-31_v4_2.csv
+
+📅 Evaluating predictions for: 2025-03-30 using model v4_2
+
+✅ Model Accuracy: 75.00%
+
+📊 Classification Report:
+              precision    recall  f1-score  support
+AWAY           0.666667  0.666667  0.666667     3.00
+HOME           0.800000  0.800000  0.800000     5.00
+accuracy       0.750000  0.750000  0.750000     0.75
+macro avg      0.733333  0.733333  0.733333     8.00
+weighted avg   0.750000  0.750000  0.750000     8.00
+
+📉 Confusion Matrix:
+             Predicted HOME  Predicted AWAY
+Actual HOME               4               1
+Actual AWAY               1               2
+
+💾 Saved evaluation to performance/accuracy_2025-03-30_v4_2.csv
+
+📈 Rolling Accuracy Overview:
+      date model  accuracy  rolling_accuracy
+2025-03-28  v4_2    0.8571            0.8571
+2025-03-29  v4_2    0.7143            0.7857
+2025-03-30  v4_2    0.7500            0.7738
+
+🔍 Matching file pattern: *_v4_2.csv
+📁 Files found: ['accuracy_2025-03-28_v4_2.csv', 'accuracy_2025-03-29_v4_2.csv', 'accuracy_2025-03-30_v4_2.csv']
+
+🎯 Running prediction for today's games...
+
+📊 Evaluation (only works if actual_winner column is added)...
+⚠️ Failed to send predictions to Discord: [Errno 2] No such file or directory: 'python'
+               home_team             away_team  ...  away_odds         commence_time
+0      Charlotte Hornets             Utah Jazz  ...        120  2025-03-31T23:10:00Z
+1         Indiana Pacers      Sacramento Kings  ...        164  2025-03-31T23:10:00Z
+2          Orlando Magic  Los Angeles Clippers  ...       -143  2025-03-31T23:10:00Z
+3     Washington Wizards            Miami Heat  ...       -370  2025-03-31T23:10:00Z
+4      Memphis Grizzlies        Boston Celtics  ...       -189  2025-03-31T23:40:00Z
+5  Oklahoma City Thunder         Chicago Bulls  ...        660  2025-04-01T00:10:00Z
+6       Dallas Mavericks         Brooklyn Nets  ...        320  2025-04-01T00:40:00Z
+7     Los Angeles Lakers       Houston Rockets  ...        155  2025-04-01T02:10:00Z
+
+[8 rows x 5 columns]
+
+✅ Odds saved to data/nba_odds_2025-03-31.csv
+🧠 Using Model: nba_model_v4_2.pkl (tuned + calibrated)
+
+🏀 Predictions for Today’s NBA Games:
+             hometeam             awayteam  home_odds  away_odds  model_win_prob  implied_home_win_pct  value_gap prediction  value_flag
+Oklahoma City Thunder        Chicago Bulls      -1000        660        0.879417              0.001000   0.878417       HOME 👍 Value Bet
+     Dallas Mavericks        Brooklyn Nets       -417        320        0.754043              0.002398   0.751644       HOME 👍 Value Bet
+       Indiana Pacers     Sacramento Kings       -196        164        0.684240              0.005102   0.679138       HOME 👍 Value Bet
+   Los Angeles Lakers      Houston Rockets       -175        155        0.593804              0.005714   0.588090       HOME 👍 Value Bet
+    Charlotte Hornets            Utah Jazz       -143        120        0.469214              0.006993   0.462221       AWAY 👍 Value Bet
+    Memphis Grizzlies       Boston Celtics        165       -189        0.440209              0.006061   0.434148       AWAY 👍 Value Bet
+        Orlando Magic Los Angeles Clippers        122       -143        0.386260              0.008197   0.378063       AWAY 👍 Value Bet
+   Washington Wizards           Miami Heat        305       -370        0.177560              0.003279   0.174281       AWAY 👍 Value Bet
+
+✅ Predictions saved to predictions/predictions_2025-03-31_v4_2.csv
+
+📅 Evaluating predictions for: 2025-03-30 using model v4_2
+
+✅ Model Accuracy: 75.00%
+
+📊 Classification Report:
+              precision    recall  f1-score  support
+AWAY           0.666667  0.666667  0.666667     3.00
+HOME           0.800000  0.800000  0.800000     5.00
+accuracy       0.750000  0.750000  0.750000     0.75
+macro avg      0.733333  0.733333  0.733333     8.00
+weighted avg   0.750000  0.750000  0.750000     8.00
+
+📉 Confusion Matrix:
+             Predicted HOME  Predicted AWAY
+Actual HOME               4               1
+Actual AWAY               1               2
+
+💾 Saved evaluation to performance/accuracy_2025-03-30_v4_2.csv
+
+📈 Rolling Accuracy Overview:
+      date model  accuracy  rolling_accuracy
+2025-03-28  v4_2    0.8571            0.8571
+2025-03-29  v4_2    0.7143            0.7857
+2025-03-30  v4_2    0.7500            0.7738
+
+🔍 Matching file pattern: *_v4_2.csv
+📁 Files found: ['accuracy_2025-03-28_v4_2.csv', 'accuracy_2025-03-29_v4_2.csv', 'accuracy_2025-03-30_v4_2.csv']
+
+🎯 Running prediction for today's games...
+
+📊 Evaluation (only works if actual_winner column is added)...
+⚠️ Failed to send predictions to Discord: [Errno 2] No such file or directory: 'python'
+               home_team             away_team  ...  away_odds         commence_time
+0      Charlotte Hornets             Utah Jazz  ...        120  2025-03-31T23:10:00Z
+1         Indiana Pacers      Sacramento Kings  ...        158  2025-03-31T23:10:00Z
+2          Orlando Magic  Los Angeles Clippers  ...       -143  2025-03-31T23:10:00Z
+3     Washington Wizards            Miami Heat  ...       -370  2025-03-31T23:10:00Z
+4      Memphis Grizzlies        Boston Celtics  ...       -189  2025-03-31T23:40:00Z
+5  Oklahoma City Thunder         Chicago Bulls  ...        660  2025-04-01T00:10:00Z
+6       Dallas Mavericks         Brooklyn Nets  ...        320  2025-04-01T00:40:00Z
+7     Los Angeles Lakers       Houston Rockets  ...        155  2025-04-01T02:10:00Z
+
+[8 rows x 5 columns]
+
+✅ Odds saved to data/nba_odds_2025-03-31.csv
+🧠 Using Model: nba_model_v4_2.pkl (tuned + calibrated)
+
+🏀 Predictions for Today’s NBA Games:
+             hometeam             awayteam  home_odds  away_odds  model_win_prob  implied_home_win_pct  value_gap prediction  value_flag
+Oklahoma City Thunder        Chicago Bulls      -1000        660        0.879417              0.001000   0.878417       HOME 👍 Value Bet
+     Dallas Mavericks        Brooklyn Nets       -417        320        0.754043              0.002398   0.751644       HOME 👍 Value Bet
+       Indiana Pacers     Sacramento Kings       -189        158        0.644022              0.005291   0.638731       HOME 👍 Value Bet
+   Los Angeles Lakers      Houston Rockets       -175        155        0.593804              0.005714   0.588090       HOME 👍 Value Bet
+    Charlotte Hornets            Utah Jazz       -143        120        0.469214              0.006993   0.462221       AWAY 👍 Value Bet
+    Memphis Grizzlies       Boston Celtics        165       -189        0.440209              0.006061   0.434148       AWAY 👍 Value Bet
+        Orlando Magic Los Angeles Clippers        122       -143        0.386260              0.008197   0.378063       AWAY 👍 Value Bet
+   Washington Wizards           Miami Heat        305       -370        0.177560              0.003279   0.174281       AWAY 👍 Value Bet
+
+✅ Predictions saved to predictions/predictions_2025-03-31_v4_2.csv
+
+📅 Evaluating predictions for: 2025-03-30 using model v4_2
+
+✅ Model Accuracy: 75.00%
+
+📊 Classification Report:
+              precision    recall  f1-score  support
+AWAY           0.666667  0.666667  0.666667     3.00
+HOME           0.800000  0.800000  0.800000     5.00
+accuracy       0.750000  0.750000  0.750000     0.75
+macro avg      0.733333  0.733333  0.733333     8.00
+weighted avg   0.750000  0.750000  0.750000     8.00
+
+📉 Confusion Matrix:
+             Predicted HOME  Predicted AWAY
+Actual HOME               4               1
+Actual AWAY               1               2
+
+💾 Saved evaluation to performance/accuracy_2025-03-30_v4_2.csv
+
+📈 Rolling Accuracy Overview:
+      date model  accuracy  rolling_accuracy
+2025-03-28  v4_2    0.8571            0.8571
+2025-03-29  v4_2    0.7143            0.7857
+2025-03-30  v4_2    0.7500            0.7738
+
+🔍 Matching file pattern: *_v4_2.csv
+📁 Files found: ['accuracy_2025-03-28_v4_2.csv', 'accuracy_2025-03-29_v4_2.csv', 'accuracy_2025-03-30_v4_2.csv']
+✅ Sent predictions to Discord!
+
+🎯 Running prediction for today's games...
+
+📊 Evaluation (only works if actual_winner column is added)...
+           home_team               away_team  ...  away_odds         commence_time
+0    Milwaukee Bucks            Phoenix Suns  ...        200  2025-04-01T23:30:00Z
+1      Atlanta Hawks  Portland Trail Blazers  ...        170  2025-04-01T23:40:00Z
+2    New York Knicks      Philadelphia 76ers  ...        640  2025-04-01T23:40:00Z
+3      Chicago Bulls         Toronto Raptors  ...        164  2025-04-02T00:10:00Z
+4  Memphis Grizzlies   Golden State Warriors  ...       -169  2025-04-02T00:10:00Z
+5  San Antonio Spurs           Orlando Magic  ...       -175  2025-04-02T00:10:00Z
+6     Denver Nuggets  Minnesota Timberwolves  ...        130  2025-04-02T02:10:00Z
+
+[7 rows x 5 columns]
+
+✅ Odds saved to data/nba_odds_2025-04-01.csv
+🧠 Using Model: nba_model_v4_2.pkl (tuned + calibrated)
+
+🏀 Predictions for Today’s NBA Games:
+             hometeam             awayteam  home_odds  away_odds  model_win_prob  implied_home_win_pct  value_gap prediction  value_flag
+Oklahoma City Thunder        Chicago Bulls      -1000        660        0.879417              0.001000   0.878417       HOME 👍 Value Bet
+     Dallas Mavericks        Brooklyn Nets       -417        320        0.754043              0.002398   0.751644       HOME 👍 Value Bet
+       Indiana Pacers     Sacramento Kings       -189        158        0.644022              0.005291   0.638731       HOME 👍 Value Bet
+   Los Angeles Lakers      Houston Rockets       -175        155        0.593804              0.005714   0.588090       HOME 👍 Value Bet
+    Charlotte Hornets            Utah Jazz       -143        120        0.469214              0.006993   0.462221       AWAY 👍 Value Bet
+    Memphis Grizzlies       Boston Celtics        165       -189        0.440209              0.006061   0.434148       AWAY 👍 Value Bet
+        Orlando Magic Los Angeles Clippers        122       -143        0.386260              0.008197   0.378063       AWAY 👍 Value Bet
+   Washington Wizards           Miami Heat        305       -370        0.177560              0.003279   0.174281       AWAY 👍 Value Bet
+
+✅ Predictions saved to predictions/predictions_2025-03-31_v4_2.csv
+
+📅 Evaluating predictions for: 2025-03-31 using model v4_2
+❌ 'actual_winner' column missing — cannot evaluate.
+
+📈 Rolling Accuracy Overview:
+      date model  accuracy  rolling_accuracy
+2025-03-28  v4_2    0.8571            0.8571
+2025-03-29  v4_2    0.7143            0.7857
+2025-03-30  v4_2    0.7500            0.7738
+
+🔍 Matching file pattern: *_v4_2.csv
+📁 Files found: ['accuracy_2025-03-28_v4_2.csv', 'accuracy_2025-03-29_v4_2.csv', 'accuracy_2025-03-30_v4_2.csv']
+❌ Prediction file not found.
+
+🎯 Running prediction for today's games...
+
+📊 Evaluation (only works if actual_winner column is added)...
+           home_team               away_team  ...  away_odds         commence_time
+0    Milwaukee Bucks            Phoenix Suns  ...        200  2025-04-01T23:30:00Z
+1      Atlanta Hawks  Portland Trail Blazers  ...        170  2025-04-01T23:40:00Z
+2    New York Knicks      Philadelphia 76ers  ...        650  2025-04-01T23:40:00Z
+3      Chicago Bulls         Toronto Raptors  ...        154  2025-04-02T00:10:00Z
+4  Memphis Grizzlies   Golden State Warriors  ...       -169  2025-04-02T00:10:00Z
+5  San Antonio Spurs           Orlando Magic  ...       -175  2025-04-02T00:10:00Z
+6     Denver Nuggets  Minnesota Timberwolves  ...        130  2025-04-02T02:10:00Z
+
+[7 rows x 5 columns]
+
+✅ Odds saved to data/nba_odds_2025-04-01.csv
+🧠 Using Model: nba_model_v4_2.pkl (tuned + calibrated)
+
+🏀 Predictions for Today’s NBA Games:
+             hometeam             awayteam  home_odds  away_odds  model_win_prob  implied_home_win_pct  value_gap prediction  value_flag
+Oklahoma City Thunder        Chicago Bulls      -1000        660        0.879417              0.001000   0.878417       HOME 👍 Value Bet
+     Dallas Mavericks        Brooklyn Nets       -417        320        0.754043              0.002398   0.751644       HOME 👍 Value Bet
+       Indiana Pacers     Sacramento Kings       -189        158        0.644022              0.005291   0.638731       HOME 👍 Value Bet
+   Los Angeles Lakers      Houston Rockets       -175        155        0.593804              0.005714   0.588090       HOME 👍 Value Bet
+    Charlotte Hornets            Utah Jazz       -143        120        0.469214              0.006993   0.462221       AWAY 👍 Value Bet
+    Memphis Grizzlies       Boston Celtics        165       -189        0.440209              0.006061   0.434148       AWAY 👍 Value Bet
+        Orlando Magic Los Angeles Clippers        122       -143        0.386260              0.008197   0.378063       AWAY 👍 Value Bet
+   Washington Wizards           Miami Heat        305       -370        0.177560              0.003279   0.174281       AWAY 👍 Value Bet
+
+✅ Predictions saved to predictions/predictions_2025-03-31_v4_2.csv
+
+📅 Evaluating predictions for: 2025-03-31 using model v4_2
+❌ 'actual_winner' column missing — cannot evaluate.
+
+📈 Rolling Accuracy Overview:
+      date model  accuracy  rolling_accuracy
+2025-03-28  v4_2    0.8571            0.8571
+2025-03-29  v4_2    0.7143            0.7857
+2025-03-30  v4_2    0.7500            0.7738
+
+🔍 Matching file pattern: *_v4_2.csv
+📁 Files found: ['accuracy_2025-03-28_v4_2.csv', 'accuracy_2025-03-29_v4_2.csv', 'accuracy_2025-03-30_v4_2.csv']
+❌ Prediction file not found.
+
+🎯 Running prediction for today's games...
+
+📊 Evaluation (only works if actual_winner column is added)...
+           home_team               away_team  ...  away_odds         commence_time
+0    Milwaukee Bucks            Phoenix Suns  ...        200  2025-04-01T23:30:00Z
+1      Atlanta Hawks  Portland Trail Blazers  ...        170  2025-04-01T23:40:00Z
+2    New York Knicks      Philadelphia 76ers  ...        650  2025-04-01T23:40:00Z
+3      Chicago Bulls         Toronto Raptors  ...        154  2025-04-02T00:10:00Z
+4  Memphis Grizzlies   Golden State Warriors  ...       -169  2025-04-02T00:10:00Z
+5  San Antonio Spurs           Orlando Magic  ...       -175  2025-04-02T00:10:00Z
+6     Denver Nuggets  Minnesota Timberwolves  ...        130  2025-04-02T02:10:00Z
+
+[7 rows x 5 columns]
+
+✅ Odds saved to data/nba_odds_2025-04-01.csv
+🧠 Using Model: nba_model_v4_2.pkl (tuned + calibrated)
+
+🏀 Predictions for Today’s NBA Games:
+             hometeam             awayteam  home_odds  away_odds  model_win_prob  implied_home_win_pct  value_gap prediction  value_flag
+Oklahoma City Thunder        Chicago Bulls      -1000        660        0.879417              0.001000   0.878417       HOME 👍 Value Bet
+     Dallas Mavericks        Brooklyn Nets       -417        320        0.754043              0.002398   0.751644       HOME 👍 Value Bet
+       Indiana Pacers     Sacramento Kings       -189        158        0.644022              0.005291   0.638731       HOME 👍 Value Bet
+   Los Angeles Lakers      Houston Rockets       -175        155        0.593804              0.005714   0.588090       HOME 👍 Value Bet
+    Charlotte Hornets            Utah Jazz       -143        120        0.469214              0.006993   0.462221       AWAY 👍 Value Bet
+    Memphis Grizzlies       Boston Celtics        165       -189        0.440209              0.006061   0.434148       AWAY 👍 Value Bet
+        Orlando Magic Los Angeles Clippers        122       -143        0.386260              0.008197   0.378063       AWAY 👍 Value Bet
+   Washington Wizards           Miami Heat        305       -370        0.177560              0.003279   0.174281       AWAY 👍 Value Bet
+
+✅ Predictions saved to predictions/predictions_2025-03-31_v4_2.csv
+
+📅 Evaluating predictions for: 2025-03-31 using model v4_2
+❌ 'actual_winner' column missing — cannot evaluate.
+
+📈 Rolling Accuracy Overview:
+      date model  accuracy  rolling_accuracy
+2025-03-28  v4_2    0.8571            0.8571
+2025-03-29  v4_2    0.7143            0.7857
+2025-03-30  v4_2    0.7500            0.7738
+
+🔍 Matching file pattern: *_v4_2.csv
+📁 Files found: ['accuracy_2025-03-28_v4_2.csv', 'accuracy_2025-03-29_v4_2.csv', 'accuracy_2025-03-30_v4_2.csv']
+❌ Prediction file not found.
+
+🎯 Running prediction for today's games...
+
+📊 Evaluation (only works if actual_winner column is added)...
+           home_team               away_team  ...  away_odds         commence_time
+0    Milwaukee Bucks            Phoenix Suns  ...        200  2025-04-01T23:30:00Z
+1      Atlanta Hawks  Portland Trail Blazers  ...        170  2025-04-01T23:40:00Z
+2    New York Knicks      Philadelphia 76ers  ...        650  2025-04-01T23:40:00Z
+3      Chicago Bulls         Toronto Raptors  ...        150  2025-04-02T00:10:00Z
+4  Memphis Grizzlies   Golden State Warriors  ...       -167  2025-04-02T00:10:00Z
+5  San Antonio Spurs           Orlando Magic  ...       -175  2025-04-02T00:10:00Z
+6     Denver Nuggets  Minnesota Timberwolves  ...        130  2025-04-02T02:10:00Z
+
+[7 rows x 5 columns]
+
+✅ Odds saved to data/nba_odds_2025-04-01.csv
+🧠 Using Model: nba_model_v4_2.pkl (tuned + calibrated)
+
+🏀 Predictions for Today’s NBA Games:
+         hometeam               awayteam  home_odds  away_odds  model_win_prob  implied_home_win_pct  value_gap prediction  value_flag
+  New York Knicks     Philadelphia 76ers       -909        650        0.843555              0.001100   0.842455       HOME 👍 Value Bet
+    Atlanta Hawks Portland Trail Blazers       -196        170        0.702017              0.005102   0.696915       HOME 👍 Value Bet
+  Milwaukee Bucks           Phoenix Suns       -238        200        0.691696              0.004202   0.687494       HOME 👍 Value Bet
+   Denver Nuggets Minnesota Timberwolves       -154        130        0.664349              0.006494   0.657855       HOME 👍 Value Bet
+    Chicago Bulls        Toronto Raptors       -179        150        0.624288              0.005587   0.618701       HOME 👍 Value Bet
+Memphis Grizzlies  Golden State Warriors        148       -167        0.458427              0.006757   0.451671       AWAY 👍 Value Bet
+San Antonio Spurs          Orlando Magic        145       -175        0.441469              0.006897   0.434572       AWAY 👍 Value Bet
+
+✅ Predictions saved to predictions/predictions_2025-04-01_v4_2.csv
+
+📅 Evaluating predictions for: 2025-03-31 using model v4_2
+
+✅ Model Accuracy: 75.00%
+
+📊 Classification Report:
+              precision  recall  f1-score  support
+AWAY               0.75    0.75      0.75     4.00
+HOME               0.75    0.75      0.75     4.00
+accuracy           0.75    0.75      0.75     0.75
+macro avg          0.75    0.75      0.75     8.00
+weighted avg       0.75    0.75      0.75     8.00
+
+📉 Confusion Matrix:
+             Predicted HOME  Predicted AWAY
+Actual HOME               3               1
+Actual AWAY               1               3
+
+💾 Saved evaluation to performance/accuracy_2025-03-31_v4_2.csv
+
+📈 Rolling Accuracy Overview:
+      date model  accuracy  rolling_accuracy
+2025-03-28  v4_2    0.8571           0.85710
+2025-03-29  v4_2    0.7143           0.78570
+2025-03-30  v4_2    0.7500           0.77380
+2025-03-31  v4_2    0.7500           0.76785
+
+🔍 Matching file pattern: *_v4_2.csv
+📁 Files found: ['accuracy_2025-03-28_v4_2.csv', 'accuracy_2025-03-29_v4_2.csv', 'accuracy_2025-03-30_v4_2.csv', 'accuracy_2025-03-31_v4_2.csv']
+✅ Sent predictions to Discord!
+
+🎯 Running prediction for today's games...
+
+📊 Evaluation (only works if actual_winner column is added)...
+               home_team             away_team  ...  away_odds         commence_time
+0         Indiana Pacers     Charlotte Hornets  ...        800  2025-04-02T23:10:00Z
+1    Cleveland Cavaliers       New York Knicks  ...        380  2025-04-02T23:10:00Z
+2     Washington Wizards      Sacramento Kings  ...       -833  2025-04-02T23:10:00Z
+3         Boston Celtics            Miami Heat  ...        400  2025-04-02T23:40:00Z
+4        Houston Rockets             Utah Jazz  ...        900  2025-04-03T00:10:00Z
+5       Dallas Mavericks         Atlanta Hawks  ...        140  2025-04-03T00:40:00Z
+6         Denver Nuggets     San Antonio Spurs  ...        330  2025-04-03T01:10:00Z
+7  Oklahoma City Thunder       Detroit Pistons  ...        550  2025-04-03T01:40:00Z
+8   Los Angeles Clippers  New Orleans Pelicans  ...        950  2025-04-03T02:10:00Z
+
+[9 rows x 5 columns]
+
+✅ Odds saved to data/nba_odds_2025-04-02.csv
+🧠 Using Model: nba_model_v4_2.pkl (tuned + calibrated)
+
+🏀 Predictions for Today’s NBA Games:
+             hometeam             awayteam  home_odds  away_odds  model_win_prob  implied_home_win_pct  value_gap prediction  value_flag
+ Los Angeles Clippers New Orleans Pelicans      -1667        950        0.883570              0.000600   0.882970       HOME 👍 Value Bet
+       Indiana Pacers    Charlotte Hornets      -1429        800        0.882518              0.000700   0.881818       HOME 👍 Value Bet
+      Houston Rockets            Utah Jazz      -1667        900        0.869154              0.000600   0.868554       HOME 👍 Value Bet
+Oklahoma City Thunder      Detroit Pistons       -833        550        0.806485              0.001200   0.805285       HOME 👍 Value Bet
+  Cleveland Cavaliers      New York Knicks       -476        380        0.747870              0.002101   0.745770       HOME 👍 Value Bet
+       Denver Nuggets    San Antonio Spurs       -417        330        0.734127              0.002398   0.731729       HOME 👍 Value Bet
+       Boston Celtics           Miami Heat       -526        400        0.724282              0.001901   0.722381       HOME 👍 Value Bet
+     Dallas Mavericks        Atlanta Hawks       -167        140        0.558259              0.005988   0.552271       HOME 👍 Value Bet
+   Washington Wizards     Sacramento Kings        615       -833        0.154808              0.001626   0.153182       AWAY 👍 Value Bet
+
+✅ Predictions saved to predictions/predictions_2025-04-02_v4_2.csv
+📡 Fetching game results for 2025-04-01...
+
+✅ Updated prediction file with actual winners: predictions/predictions_2025-04-01_v4_2.csv
+
+🎯 Game Results:
+         hometeam               awayteam prediction actual_winner
+  Milwaukee Bucks           Phoenix Suns       HOME          HOME
+    Atlanta Hawks Portland Trail Blazers       HOME          AWAY
+  New York Knicks     Philadelphia 76ers       HOME          HOME
+    Chicago Bulls        Toronto Raptors       HOME          HOME
+Memphis Grizzlies  Golden State Warriors       AWAY          AWAY
+San Antonio Spurs          Orlando Magic       AWAY          AWAY
+   Denver Nuggets Minnesota Timberwolves       HOME          AWAY
+
+📅 Evaluating predictions for: 2025-04-01 using model v4_2
+
+✅ Model Accuracy: 71.43%
+
+📊 Classification Report:
+              precision    recall  f1-score   support
+AWAY           1.000000  0.500000  0.666667  4.000000
+HOME           0.600000  1.000000  0.750000  3.000000
+accuracy       0.714286  0.714286  0.714286  0.714286
+macro avg      0.800000  0.750000  0.708333  7.000000
+weighted avg   0.828571  0.714286  0.702381  7.000000
+
+📉 Confusion Matrix:
+             Predicted HOME  Predicted AWAY
+Actual HOME               3               0
+Actual AWAY               2               2
+
+💾 Saved evaluation to performance/accuracy_2025-04-01_v4_2.csv
+
+📈 Rolling Accuracy Overview:
+      date model  accuracy  rolling_accuracy
+2025-03-28  v4_2    0.8571           0.85710
+2025-03-29  v4_2    0.7143           0.78570
+2025-03-30  v4_2    0.7500           0.77380
+2025-03-31  v4_2    0.7500           0.76785
+2025-04-01  v4_2    0.7143           0.75714
+
+🔍 Matching file pattern: *_v4_2.csv
+📁 Files found: ['accuracy_2025-03-28_v4_2.csv', 'accuracy_2025-03-29_v4_2.csv', 'accuracy_2025-03-30_v4_2.csv', 'accuracy_2025-03-31_v4_2.csv', 'accuracy_2025-04-01_v4_2.csv']
+
+🎯 Running prediction for today's games...
+
+📡 Fetching actual results for 2025-04-01...
+
+📊 Evaluating yesterday’s predictions...
+            home_team               away_team  ...  away_odds         commence_time
+0  Philadelphia 76ers         Milwaukee Bucks  ...       -714  2025-04-03T23:10:00Z
+1  Washington Wizards           Orlando Magic  ...      -1429  2025-04-03T23:10:00Z
+2          Miami Heat       Memphis Grizzlies  ...       -208  2025-04-03T23:30:00Z
+3       Brooklyn Nets  Minnesota Timberwolves  ...       -833  2025-04-03T23:40:00Z
+4     Toronto Raptors  Portland Trail Blazers  ...       -192  2025-04-03T23:40:00Z
+5  Los Angeles Lakers   Golden State Warriors  ...        102  2025-04-04T02:00:00Z
+
+[6 rows x 5 columns]
+
+✅ Odds saved to data/nba_odds_2025-04-03.csv
+🧠 Using Model: nba_model_v4_2.pkl (tuned + calibrated)
+
+🏀 Predictions for Today’s NBA Games:
+          hometeam               awayteam  home_odds  away_odds  model_win_prob  implied_prob  value_gap prediction     value_flag
+Los Angeles Lakers  Golden State Warriors       -122        102        0.515314      0.549550  -0.034235       HOME ⚠️ Caution Bet
+        Miami Heat      Memphis Grizzlies        180       -208        0.431010      0.675325  -0.244315       AWAY ⚠️ Caution Bet
+   Toronto Raptors Portland Trail Blazers        160       -192        0.390117      0.657534  -0.267417       AWAY ⚠️ Caution Bet
+Washington Wizards          Orlando Magic        810      -1429        0.183511      0.934598  -0.751087       AWAY ⚠️ Caution Bet
+Philadelphia 76ers        Milwaukee Bucks        500       -714        0.182163      0.877150  -0.694987       AWAY ⚠️ Caution Bet
+     Brooklyn Nets Minnesota Timberwolves        580       -833        0.172779      0.892819  -0.720040       AWAY ⚠️ Caution Bet
+
+✅ Predictions saved to predictions/predictions_2025-04-03_v4_2.csv
+📡 Fetching game results for 2025-04-01...
+
+✅ Updated prediction file with actual winners: predictions/predictions_2025-04-01_v4_2.csv
+
+🎯 Game Results:
+         hometeam               awayteam prediction actual_winner
+  Milwaukee Bucks           Phoenix Suns       HOME          HOME
+    Atlanta Hawks Portland Trail Blazers       HOME          AWAY
+  New York Knicks     Philadelphia 76ers       HOME          HOME
+    Chicago Bulls        Toronto Raptors       HOME          HOME
+Memphis Grizzlies  Golden State Warriors       AWAY          AWAY
+San Antonio Spurs          Orlando Magic       AWAY          AWAY
+   Denver Nuggets Minnesota Timberwolves       HOME          AWAY
+
+📅 Evaluating predictions for: 2025-04-02 using model v4_2
+❌ 'actual_winner' column missing — cannot evaluate.
+
+📈 Rolling Accuracy Overview:
+      date model  accuracy  rolling_accuracy
+2025-03-28  v4_2    0.8571           0.85710
+2025-03-29  v4_2    0.7143           0.78570
+2025-03-30  v4_2    0.7500           0.77380
+2025-03-31  v4_2    0.7500           0.76785
+2025-04-01  v4_2    0.7143           0.75714
+
+🔍 Matching file pattern: *_v4_2.csv
+📁 Files found: ['accuracy_2025-03-28_v4_2.csv', 'accuracy_2025-03-29_v4_2.csv', 'accuracy_2025-03-30_v4_2.csv', 'accuracy_2025-03-31_v4_2.csv', 'accuracy_2025-04-01_v4_2.csv']
+
+🎯 Running prediction for today's games...
+
+📡 Fetching actual results for 2025-04-02...
+
+📊 Evaluating yesterday’s predictions...
+               home_team  ...         commence_time
+0      Charlotte Hornets  ...  2025-04-04T23:10:00Z
+1         Indiana Pacers  ...  2025-04-04T23:10:00Z
+2         Boston Celtics  ...  2025-04-04T23:40:00Z
+3        Toronto Raptors  ...  2025-04-04T23:40:00Z
+4          Chicago Bulls  ...  2025-04-05T00:10:00Z
+5      San Antonio Spurs  ...  2025-04-05T00:10:00Z
+6        Houston Rockets  ...  2025-04-05T00:10:00Z
+7  Golden State Warriors  ...  2025-04-05T02:10:00Z
+8   Los Angeles Clippers  ...  2025-04-05T02:40:00Z
+9     Los Angeles Lakers  ...  2025-04-05T02:40:00Z
+
+[10 rows x 5 columns]
+
+✅ Odds saved to data/nba_odds_2025-04-04.csv
+🧠 Using Model: nba_model_v4_2.pkl (tuned + calibrated)
+
+🏀 Predictions for Today’s NBA Games:
+             hometeam               awayteam  home_odds  away_odds  model_win_prob  implied_prob  value_gap prediction     value_flag
+   Los Angeles Lakers   New Orleans Pelicans      -1000        660        0.807617      0.909091  -0.101474       HOME ⚠️ Caution Bet
+       Indiana Pacers              Utah Jazz      -1429        825        0.793074      0.934598  -0.141524       HOME ⚠️ Caution Bet
+       Boston Celtics           Phoenix Suns       -833        625        0.759414      0.892819  -0.133405       HOME ⚠️ Caution Bet
+ Los Angeles Clippers       Dallas Mavericks       -556        410        0.716850      0.847561  -0.130711       HOME ⚠️ Caution Bet
+        Chicago Bulls Portland Trail Blazers       -238        195        0.685671      0.704142  -0.018471       HOME              –
+Golden State Warriors         Denver Nuggets       -114       -106        0.510070      0.532710  -0.022641       HOME              –
+      Houston Rockets  Oklahoma City Thunder        194       -233        0.368474      0.699700  -0.331226       AWAY ⚠️ Caution Bet
+    San Antonio Spurs    Cleveland Cavaliers        575       -833        0.237277      0.892819  -0.655542       AWAY ⚠️ Caution Bet
+      Toronto Raptors        Detroit Pistons        430       -588        0.198958      0.854651  -0.655693       AWAY ⚠️ Caution Bet
+    Charlotte Hornets       Sacramento Kings        395       -500        0.183511      0.833333  -0.649822       AWAY ⚠️ Caution Bet
+
+✅ Predictions saved to predictions/predictions_2025-04-04_v4_2.csv
+📡 Fetching game results for 2025-04-01...
+
+✅ Updated prediction file with actual winners: predictions/predictions_2025-04-01_v4_2.csv
+
+🎯 Game Results:
+         hometeam               awayteam prediction actual_winner
+  Milwaukee Bucks           Phoenix Suns       HOME          HOME
+    Atlanta Hawks Portland Trail Blazers       HOME          AWAY
+  New York Knicks     Philadelphia 76ers       HOME          HOME
+    Chicago Bulls        Toronto Raptors       HOME          HOME
+Memphis Grizzlies  Golden State Warriors       AWAY          AWAY
+San Antonio Spurs          Orlando Magic       AWAY          AWAY
+   Denver Nuggets Minnesota Timberwolves       HOME          AWAY
+
+📅 Evaluating predictions for: 2025-04-03 using model v4_2
+❌ 'actual_winner' column missing — cannot evaluate.
+
+📈 Rolling Accuracy Overview:
+      date model  accuracy  rolling_accuracy
+2025-03-28  v4_2    0.8571           0.85710
+2025-03-29  v4_2    0.7143           0.78570
+2025-03-30  v4_2    0.7500           0.77380
+2025-03-31  v4_2    0.7500           0.76785
+2025-04-01  v4_2    0.7143           0.75714
+
+🔍 Matching file pattern: *_v4_2.csv
+📁 Files found: ['accuracy_2025-03-28_v4_2.csv', 'accuracy_2025-03-29_v4_2.csv', 'accuracy_2025-03-30_v4_2.csv', 'accuracy_2025-03-31_v4_2.csv', 'accuracy_2025-04-01_v4_2.csv']
+
+🎯 Running prediction for today's games...
+
+📡 Fetching actual results for 2025-04-03...
+
+📊 Evaluating yesterday’s predictions...
+               home_team  ...         commence_time
+0          Atlanta Hawks  ...  2025-04-05T19:10:00Z
+1        Detroit Pistons  ...  2025-04-05T23:10:00Z
+2     Philadelphia 76ers  ...  2025-04-05T23:10:00Z
+3             Miami Heat  ...  2025-04-06T00:10:00Z
+4   Los Angeles Clippers  ...  2025-04-06T02:40:00Z
+5  Oklahoma City Thunder  ...  2025-04-06T19:40:00Z
+6        New York Knicks  ...  2025-04-06T23:10:00Z
+7  Golden State Warriors  ...  2025-04-07T00:40:00Z
+
+[8 rows x 5 columns]
+
+✅ Odds saved to data/nba_odds_2025-04-05.csv
+🧠 Using Model: nba_model_v4_2.pkl (tuned + calibrated)
+
+🏀 Predictions for Today’s NBA Games:
+             hometeam               awayteam  home_odds  away_odds  model_win_prob  implied_prob  value_gap prediction     value_flag
+ Los Angeles Clippers       Dallas Mavericks       -345        280        0.723278      0.775281  -0.052003       HOME ⚠️ Caution Bet
+Oklahoma City Thunder     Los Angeles Lakers       -370        295        0.709015      0.787234  -0.078219       HOME ⚠️ Caution Bet
+      New York Knicks           Phoenix Suns       -312        250        0.706963      0.757282  -0.050319       HOME ⚠️ Caution Bet
+      Detroit Pistons      Memphis Grizzlies        110       -130        0.572450      0.476190   0.096260       HOME    👍 Value Bet
+Golden State Warriors        Houston Rockets       -154        130        0.534191      0.606299  -0.072108       HOME ⚠️ Caution Bet
+           Miami Heat        Milwaukee Bucks       -118        100        0.510305      0.541284  -0.030980       HOME ⚠️ Caution Bet
+        Atlanta Hawks        New York Knicks        108       -127        0.507261      0.480769   0.026492       HOME              –
+   Philadelphia 76ers Minnesota Timberwolves        775      -1250        0.183511      0.925926  -0.742415       AWAY ⚠️ Caution Bet
+
+✅ Predictions saved to predictions/predictions_2025-04-05_v4_2.csv
+📡 Fetching game results for 2025-04-04...
+
+✅ Updated prediction file with actual winners: predictions/predictions_2025-04-04_v4_2.csv
+
+🎯 Game Results:
+             hometeam               awayteam prediction actual_winner
+    Charlotte Hornets       Sacramento Kings       AWAY          AWAY
+       Indiana Pacers              Utah Jazz       HOME          HOME
+       Boston Celtics           Phoenix Suns       HOME          HOME
+      Toronto Raptors        Detroit Pistons       AWAY          AWAY
+        Chicago Bulls Portland Trail Blazers       HOME          HOME
+    San Antonio Spurs    Cleveland Cavaliers       AWAY          AWAY
+      Houston Rockets  Oklahoma City Thunder       AWAY          HOME
+Golden State Warriors         Denver Nuggets       HOME          HOME
+ Los Angeles Clippers       Dallas Mavericks       HOME          HOME
+   Los Angeles Lakers   New Orleans Pelicans       HOME          HOME
+
+📅 Evaluating predictions for: 2025-04-04 using model v4_2
+
+✅ Model Accuracy: 90.00%
+
+📊 Classification Report:
+              precision    recall  f1-score  support
+AWAY              0.750  1.000000  0.857143      3.0
+HOME              1.000  0.857143  0.923077      7.0
+accuracy          0.900  0.900000  0.900000      0.9
+macro avg         0.875  0.928571  0.890110     10.0
+weighted avg      0.925  0.900000  0.903297     10.0
+
+📉 Confusion Matrix:
+             Predicted HOME  Predicted AWAY
+Actual HOME               6               1
+Actual AWAY               0               3
+
+💾 Saved evaluation to performance/accuracy_2025-04-04_v4_2.csv
+
+📈 Rolling Accuracy Overview:
+      date model  accuracy  rolling_accuracy
+2025-03-28  v4_2    0.8571           0.85710
+2025-03-29  v4_2    0.7143           0.78570
+2025-03-30  v4_2    0.7500           0.77380
+2025-03-31  v4_2    0.7500           0.76785
+2025-04-01  v4_2    0.7143           0.75714
+2025-04-03  v4_2    0.8333           0.75238
+2025-04-04  v4_2    0.9000           0.78952
+
+🔍 Matching file pattern: *_v4_2.csv
+📁 Files found: ['accuracy_2025-03-28_v4_2.csv', 'accuracy_2025-03-29_v4_2.csv', 'accuracy_2025-03-30_v4_2.csv', 'accuracy_2025-03-31_v4_2.csv', 'accuracy_2025-04-01_v4_2.csv', 'accuracy_2025-04-03_v4_2.csv', 'accuracy_2025-04-04_v4_2.csv']
+
+🎯 Running prediction for today's games...
+
+📡 Fetching actual results for 2025-04-04...
+
+📊 Evaluating yesterday’s predictions...
+🚀 Starting NBA AI Prediction Pipeline...
+
+📡 Fetching NBA odds from The Odds API...
+                 home_team  ...         commence_time_cst
+0        Charlotte Hornets  ... 2025-04-06 12:10:34-05:00
+1            Brooklyn Nets  ... 2025-04-06 14:40:00-05:00
+2    Oklahoma City Thunder  ... 2025-04-06 14:40:00-05:00
+3            Atlanta Hawks  ... 2025-04-06 17:10:00-05:00
+4           Boston Celtics  ... 2025-04-06 17:10:00-05:00
+5      Cleveland Cavaliers  ... 2025-04-06 17:10:00-05:00
+6   Portland Trail Blazers  ... 2025-04-06 17:10:00-05:00
+7          New York Knicks  ... 2025-04-06 18:10:00-05:00
+8           Denver Nuggets  ... 2025-04-06 19:10:00-05:00
+9     New Orleans Pelicans  ... 2025-04-06 19:30:00-05:00
+10   Golden State Warriors  ... 2025-04-06 19:40:00-05:00
+
+[11 rows x 5 columns]
+
+✅ Filtered odds for 2025-04-06 (CST) saved to /Users/mk/nba-betting-ai/data/nba_odds_2025-04-06.csv
+
+✅ Features saved to /Users/mk/nba-betting-ai/data/features_today_2025-04-06.csv
+🧠 Using Model: nba_model_v4_2.pkl (tuned + calibrated)
+
+🏀 Predictions for Today’s NBA Games:
+              hometeam           awayteam  home_odds  away_odds  model_win_prob  implied_prob  value_gap prediction     value_flag
+        Boston Celtics Washington Wizards      -3333       1400        0.848465      0.970871  -0.122406       HOME ⚠️ Caution Bet
+         Atlanta Hawks          Utah Jazz       -769        565        0.767786      0.884925  -0.117139       HOME ⚠️ Caution Bet
+   Cleveland Cavaliers   Sacramento Kings       -455        360        0.747870      0.819820  -0.071949       HOME ⚠️ Caution Bet
+        Denver Nuggets     Indiana Pacers       -256        210        0.724282      0.719101   0.005181       HOME              –
+ Oklahoma City Thunder Los Angeles Lakers       -400        320        0.709015      0.800000  -0.090985       HOME ⚠️ Caution Bet
+ Golden State Warriors    Houston Rockets       -217        180        0.709015      0.684543   0.024472       HOME              –
+       New York Knicks       Phoenix Suns       -417        320        0.706963      0.806576  -0.099614       HOME ⚠️ Caution Bet
+Portland Trail Blazers  San Antonio Spurs       -196        164        0.661974      0.662162  -0.000188       HOME              –
+         Brooklyn Nets    Toronto Raptors        110       -130        0.450667      0.565217  -0.114550       AWAY ⚠️ Caution Bet
+  New Orleans Pelicans    Milwaukee Bucks        250       -303        0.237778      0.751861  -0.514083       AWAY ⚠️ Caution Bet
+     Charlotte Hornets      Chicago Bulls       1500     -10000        0.183511      0.990099  -0.806588       AWAY ⚠️ Caution Bet
+
+✅ Predictions saved to /Users/mk/nba-betting-ai/predictions/predictions_2025-04-06_v4_2.csv
+
+📡 Fetching actual results for 2025-04-05...
+📡 Fetching game results for 2025-04-05...
+
+✅ Updated prediction file with actual winners: /Users/mk/nba-betting-ai/predictions/predictions_2025-04-05_v4_2.csv
+
+🎯 Game Results:
+            hometeam         awayteam prediction actual_winner
+Los Angeles Clippers Dallas Mavericks       HOME          HOME
+
+📊 Evaluating predictions...
+
+📅 Evaluating predictions for: 2025-04-05 using model v4_2
+
+✅ Model Accuracy: 100.00%
+
+📊 Classification Report:
+              precision  recall  f1-score  support
+HOME                1.0     1.0       1.0      1.0
+accuracy            1.0     1.0       1.0      1.0
+macro avg           1.0     1.0       1.0      1.0
+weighted avg        1.0     1.0       1.0      1.0
+
+📉 Confusion Matrix:
+             Predicted HOME  Predicted AWAY
+Actual HOME               1               0
+Actual AWAY               0               0
+
+❌ Pipeline failed: 'AWAY'

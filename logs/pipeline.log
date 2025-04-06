@@ -1,0 +1,119 @@
+               home_team             away_team  ...  away_odds         commence_time
+0         Indiana Pacers     Charlotte Hornets  ...        800  2025-04-02T23:10:00Z
+1    Cleveland Cavaliers       New York Knicks  ...        380  2025-04-02T23:10:00Z
+2     Washington Wizards      Sacramento Kings  ...       -833  2025-04-02T23:10:00Z
+3         Boston Celtics            Miami Heat  ...        400  2025-04-02T23:40:00Z
+4        Houston Rockets             Utah Jazz  ...        900  2025-04-03T00:10:00Z
+5       Dallas Mavericks         Atlanta Hawks  ...        140  2025-04-03T00:40:00Z
+6         Denver Nuggets     San Antonio Spurs  ...        330  2025-04-03T01:10:00Z
+7  Oklahoma City Thunder       Detroit Pistons  ...        550  2025-04-03T01:40:00Z
+8   Los Angeles Clippers  New Orleans Pelicans  ...        950  2025-04-03T02:10:00Z
+
+[9 rows x 5 columns]
+❌ File not found: predictions/predictions_2025-04-01_v4_2.csv
+
+📅 Evaluating predictions for: 2025-04-01 using model v4_2
+❌ Prediction file not found: predictions/predictions_2025-04-01_v4_2.csv
+
+🎯 Running prediction for today's games...
+❌ Failed to fetch odds: Command '['/Users/mk/nba-betting-ai/nba-env/bin/python', '/Users/mk/nba-betting-ai/get_odds.py']' returned non-zero exit status 1.
+❌ Prediction failed: Command '['/Users/mk/nba-betting-ai/nba-env/bin/python', '/Users/mk/nba-betting-ai/predict_today_api_only_1.py']' returned non-zero exit status 1.
+
+📡 Fetching actual results for 2025-04-01...
+
+📊 Evaluating yesterday’s predictions...
+⚠️ Rolling accuracy update failed: Command '['/Users/mk/nba-betting-ai/nba-env/bin/python', '/Users/mk/nba-betting-ai/src/monitor/rolling_accuracy.py', 'v4_2']' returned non-zero exit status 1.
+               home_team             away_team  ...  away_odds         commence_time
+0         Indiana Pacers     Charlotte Hornets  ...        800  2025-04-02T23:10:00Z
+1    Cleveland Cavaliers       New York Knicks  ...        380  2025-04-02T23:10:00Z
+2     Washington Wizards      Sacramento Kings  ...       -833  2025-04-02T23:10:00Z
+3         Boston Celtics            Miami Heat  ...        400  2025-04-02T23:40:00Z
+4        Houston Rockets             Utah Jazz  ...        900  2025-04-03T00:10:00Z
+5       Dallas Mavericks         Atlanta Hawks  ...        140  2025-04-03T00:40:00Z
+6         Denver Nuggets     San Antonio Spurs  ...        330  2025-04-03T01:10:00Z
+7  Oklahoma City Thunder       Detroit Pistons  ...        550  2025-04-03T01:40:00Z
+8   Los Angeles Clippers  New Orleans Pelicans  ...        950  2025-04-03T02:10:00Z
+
+[9 rows x 5 columns]
+❌ File not found: predictions/predictions_2025-04-01_v4_2.csv
+
+📅 Evaluating predictions for: 2025-04-01 using model v4_2
+❌ Prediction file not found: predictions/predictions_2025-04-01_v4_2.csv
+
+🎯 Running prediction for today's games...
+❌ Failed to fetch odds: Command '['/Users/mk/nba-betting-ai/nba-env/bin/python', '/Users/mk/nba-betting-ai/get_odds.py']' returned non-zero exit status 1.
+❌ Prediction failed: Command '['/Users/mk/nba-betting-ai/nba-env/bin/python', '/Users/mk/nba-betting-ai/predict_today_api_only_1.py']' returned non-zero exit status 1.
+
+📡 Fetching actual results for 2025-04-01...
+
+📊 Evaluating yesterday’s predictions...
+⚠️ Rolling accuracy update failed: Command '['/Users/mk/nba-betting-ai/nba-env/bin/python', '/Users/mk/nba-betting-ai/src/monitor/rolling_accuracy.py', 'v4_2']' returned non-zero exit status 1.
+            home_team               away_team  ...  away_odds         commence_time
+0  Philadelphia 76ers         Milwaukee Bucks  ...       -714  2025-04-03T23:10:00Z
+1  Washington Wizards           Orlando Magic  ...      -1000  2025-04-03T23:10:00Z
+2          Miami Heat       Memphis Grizzlies  ...       -189  2025-04-03T23:30:00Z
+3       Brooklyn Nets  Minnesota Timberwolves  ...       -769  2025-04-03T23:40:00Z
+4     Toronto Raptors  Portland Trail Blazers  ...       -192  2025-04-03T23:40:00Z
+5  Los Angeles Lakers   Golden State Warriors  ...        100  2025-04-04T02:00:00Z
+
+[6 rows x 5 columns]
+❌ File not found: predictions/predictions_2025-04-01_v4_2.csv
+
+📅 Evaluating predictions for: 2025-04-02 using model v4_2
+❌ Prediction file not found: predictions/predictions_2025-04-02_v4_2.csv
+
+🎯 Running prediction for today's games...
+❌ Failed to fetch odds: Command '['/Users/mk/nba-betting-ai/nba-env/bin/python', '/Users/mk/nba-betting-ai/get_odds.py']' returned non-zero exit status 1.
+❌ Prediction failed: Command '['/Users/mk/nba-betting-ai/nba-env/bin/python', '/Users/mk/nba-betting-ai/predict_today_api_only_1.py']' returned non-zero exit status 1.
+
+📡 Fetching actual results for 2025-04-02...
+
+📊 Evaluating yesterday’s predictions...
+⚠️ Rolling accuracy update failed: Command '['/Users/mk/nba-betting-ai/nba-env/bin/python', '/Users/mk/nba-betting-ai/src/monitor/rolling_accuracy.py', 'v4_2']' returned non-zero exit status 1.
+               home_team  ...         commence_time
+0      Charlotte Hornets  ...  2025-04-04T23:10:00Z
+1         Indiana Pacers  ...  2025-04-04T23:10:00Z
+2         Boston Celtics  ...  2025-04-04T23:40:00Z
+3        Toronto Raptors  ...  2025-04-04T23:40:00Z
+4          Chicago Bulls  ...  2025-04-05T00:10:00Z
+5      San Antonio Spurs  ...  2025-04-05T00:10:00Z
+6        Houston Rockets  ...  2025-04-05T00:10:00Z
+7  Golden State Warriors  ...  2025-04-05T02:10:00Z
+8   Los Angeles Clippers  ...  2025-04-05T02:40:00Z
+9     Los Angeles Lakers  ...  2025-04-05T02:40:00Z
+
+[10 rows x 5 columns]
+❌ File not found: predictions/predictions_2025-04-01_v4_2.csv
+
+📅 Evaluating predictions for: 2025-04-03 using model v4_2
+❌ Prediction file not found: predictions/predictions_2025-04-03_v4_2.csv
+
+🎯 Running prediction for today's games...
+❌ Failed to fetch odds: Command '['/Users/mk/nba-betting-ai/nba-env/bin/python', '/Users/mk/nba-betting-ai/get_odds.py']' returned non-zero exit status 1.
+❌ Prediction failed: Command '['/Users/mk/nba-betting-ai/nba-env/bin/python', '/Users/mk/nba-betting-ai/predict_today_api_only_1.py']' returned non-zero exit status 1.
+
+📡 Fetching actual results for 2025-04-03...
+
+📊 Evaluating yesterday’s predictions...
+⚠️ Rolling accuracy update failed: Command '['/Users/mk/nba-betting-ai/nba-env/bin/python', '/Users/mk/nba-betting-ai/src/monitor/rolling_accuracy.py', 'v4_2']' returned non-zero exit status 1.
+              home_team  ...         commence_time
+0         Atlanta Hawks  ...  2025-04-05T19:10:00Z
+1       Detroit Pistons  ...  2025-04-05T23:10:00Z
+2    Philadelphia 76ers  ...  2025-04-05T23:10:00Z
+3            Miami Heat  ...  2025-04-06T00:10:00Z
+4  Los Angeles Clippers  ...  2025-04-06T02:40:00Z
+
+[5 rows x 5 columns]
+❌ File not found: predictions/predictions_2025-04-04_v4_2.csv
+
+📅 Evaluating predictions for: 2025-04-04 using model v4_2
+❌ Prediction file not found: predictions/predictions_2025-04-04_v4_2.csv
+
+🎯 Running prediction for today's games...
+❌ Failed to fetch odds: Command '['/Users/mk/nba-betting-ai/nba-env/bin/python', '/Users/mk/nba-betting-ai/get_odds.py']' returned non-zero exit status 1.
+❌ Prediction failed: Command '['/Users/mk/nba-betting-ai/nba-env/bin/python', '/Users/mk/nba-betting-ai/predict_today_api_only_1.py']' returned non-zero exit status 1.
+
+📡 Fetching actual results for 2025-04-04...
+
+📊 Evaluating yesterday’s predictions...
+⚠️ Rolling accuracy update failed: Command '['/Users/mk/nba-betting-ai/nba-env/bin/python', '/Users/mk/nba-betting-ai/src/monitor/rolling_accuracy.py', 'v4_2']' returned non-zero exit status 1.

@@ -1,0 +1,9 @@
+date,home_team,away_team,home_win_prob,away_win_prob,home_odds,away_odds,matchup_risk,actual_winner
+2025-03-23,Detroit Pistons,New Orleans Pelicans,5.06,94.94,-588,440,2.9, Detroit Pistons
+2025-03-23,Utah Jazz,Cleveland Cavaliers,1.37,98.63,750,-1250,5.05, Cleveland Cavaliers
+2025-03-23,Atlanta Hawks,Philadelphia 76ers,12.68,87.32,-476,360,3.73, Athlanta Hawks
+2025-03-23,Miami Heat,Charlotte Hornets,24.05,75.95,-169,142,2.77, Miami Heat
+2025-03-23,Toronto Raptors,San Antonio Spurs,16.7,83.3,-112,-108,1.61, San Antonio Spurs
+2025-03-23,Portland Trail Blazers,Boston Celtics,0.62,99.38,250,-312,4.87, Boston Celtics
+2025-03-23,Houston Rockets,Denver Nuggets,8.13,91.87,-294,235,3.67, Denver Nuggets
+2025-03-23,Los Angeles Clippers,Oklahoma City Thunder,0.69,99.31,136,-161,3.72, Oklahoma City Thunder

@@ -1,0 +1,2 @@
+date,model,accuracy,home_precision,away_precision,home_recall,away_recall
+2025-04-04,v4_2,0.9,1.0,0.75,0.8571,1.0
