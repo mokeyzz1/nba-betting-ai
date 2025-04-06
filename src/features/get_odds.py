@@ -4,7 +4,6 @@ from datetime import datetime
 from zoneinfo import ZoneInfo  # Python 3.9+
 from src.utils.config import DATA_DIR
 
-
 API_KEY = "a2323a916e16fc25d64c84ede464c626"
 SPORT = "basketball_nba"
 REGION = "us"
@@ -26,6 +25,16 @@ def decimal_to_american(decimal_odds):
 
 def fetch_odds():
     print("📡 Fetching NBA odds from The Odds API...")
+
+    # === Get today’s CST date and define filename ===
+    cst = ZoneInfo("America/Chicago")
+    today_cst = datetime.now(cst).date()
+    filename = DATA_DIR / f"nba_odds_{today_cst}.csv"
+
+    # === Safeguard: Skip fetch if today's file already exists ===
+    if filename.exists():
+        print(f"🛑 Odds already exist for {today_cst} — skipping fetch.")
+        return
 
     response = requests.get(URL, params=params)
 
@@ -65,18 +74,13 @@ def fetch_odds():
         # --- Create DataFrame ---
         df = pd.DataFrame(rows)
         df['commence_time'] = pd.to_datetime(df['commence_time'], utc=True)
-
-        # --- Convert to CST ---
-        cst = ZoneInfo("America/Chicago")
         df['commence_time_cst'] = df['commence_time'].dt.tz_convert(cst)
 
         # --- Filter for Today's Games ---
-        today_cst = datetime.now(cst).date()
         df_today = df[df['commence_time_cst'].dt.date == today_cst].reset_index(drop=True)
 
         # --- Display and Save ---
         print(df_today[['home_team', 'away_team', 'home_odds', 'away_odds', 'commence_time_cst']])
-        filename = DATA_DIR / f"nba_odds_{today_cst}.csv"
         df_today.to_csv(filename, index=False)
         print(f"\n✅ Filtered odds for {today_cst} (CST) saved to {filename}")
 

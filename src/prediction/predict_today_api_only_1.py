@@ -22,6 +22,17 @@ def run_predictions():
     # === Load today’s odds CSV ===
     today_str = datetime.today().strftime('%Y-%m-%d')
     odds_file = DATA_DIR / f"nba_odds_{today_str}.csv"
+    save_path = PREDICTIONS_DIR / f"predictions_{today_str}_v4_2.csv"
+
+    # === Skip if predictions already exist with value_flag
+    if os.path.exists(save_path):
+        try:
+            existing_df = pd.read_csv(save_path)
+            if "value_flag" in existing_df.columns and not existing_df["value_flag"].isnull().all():
+                print(f"🛑 Predictions already exist for today — skipping prediction step.")
+                return
+        except Exception as e:
+            print(f"⚠️ Error checking existing predictions: {e}")
 
     try:
         odds_df = pd.read_csv(odds_file)
@@ -106,10 +117,8 @@ def run_predictions():
 
     df["model_win_prob"] = model.predict_proba(X)[:, 1]
     df["prediction"] = df["model_win_prob"].apply(lambda p: "HOME" if p >= 0.5 else "AWAY")
-
     df["predicted_odds"] = df.apply(lambda x: x["home_odds"] if x["prediction"] == "HOME" else x["away_odds"], axis=1)
     df["implied_prob"] = df["predicted_odds"].apply(implied_prob)
-
     df["value_gap"] = df["model_win_prob"] - df["implied_prob"]
     df["value_flag"] = df["value_gap"].apply(
         lambda g: "👍 Value Bet" if g > 0.03 else ("⚠️ Caution Bet" if g < -0.03 else "–")
@@ -125,6 +134,5 @@ def run_predictions():
 
     # === Save ===
     os.makedirs(PREDICTIONS_DIR, exist_ok=True)
-    save_path = PREDICTIONS_DIR / f"predictions_{today_str}_v4_2.csv"
     df.to_csv(save_path, index=False)
     print(f"\n✅ Predictions saved to {save_path}")

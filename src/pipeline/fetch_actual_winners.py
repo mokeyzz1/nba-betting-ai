@@ -17,6 +17,11 @@ def fetch_actual_results(date: str, model_version: str):
         print(f"❌ File not found: {file_path}")
         return
 
+    # ✅ Exit early if already has actual_winner column filled
+    if "actual_winner" in df.columns and df["actual_winner"].notna().all():
+        print(f"🛑 Actual results already present for {date} — skipping fetch.")
+        return
+
     print(f"📡 Fetching game results for {date}...")
     scoreboard = ScoreboardV2(game_date=date)
     time.sleep(1.5)  # Rate limit buffer
