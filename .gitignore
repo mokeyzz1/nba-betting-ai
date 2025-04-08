@@ -2,3 +2,8 @@ data/NBA_Database.sql
 data/PlayerStatistics.csv
 data/NBA_Database.sql
 data/PlayerStatistics.csv
+
+# 🔒 Ignore sensitive config and secrets
+.env
+discord/send_to_friends.py
+discord/send_to_me.py
