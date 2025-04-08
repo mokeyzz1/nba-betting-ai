@@ -1212,3 +1212,73 @@ Actual HOME               1               0
 Actual AWAY               0               0
 
 ❌ Pipeline failed: 'AWAY'
+🚀 Starting NBA AI Prediction Pipeline...
+
+📡 Fetching NBA odds from The Odds API...
+🛑 Odds already exist for 2025-04-07 — skipping fetch.
+
+✅ Features saved to /Users/mk/nba-betting-ai/data/features_today_2025-04-07.csv
+🧠 Using Model: nba_model_v4_2.pkl (tuned + calibrated)
+
+🏀 Predictions for Today’s NBA Games:
+       hometeam           awayteam  home_odds  away_odds  model_win_prob  implied_prob  value_gap prediction     value_flag
+     Miami Heat Philadelphia 76ers      -1111        700        0.809946      0.917424  -0.107478       HOME ⚠️ Caution Bet
+Detroit Pistons   Sacramento Kings       -303        250        0.749569      0.751861  -0.002292       HOME              –
+
+✅ Predictions saved to /Users/mk/nba-betting-ai/predictions/predictions_2025-04-07_v4_2.csv
+
+📡 Fetching actual results for 2025-04-06...
+📡 Fetching game results for 2025-04-06...
+
+✅ Updated prediction file with actual winners: /Users/mk/nba-betting-ai/predictions/predictions_2025-04-06_v4_2.csv
+
+🎯 Game Results:
+              hometeam           awayteam prediction actual_winner
+         Brooklyn Nets    Toronto Raptors       AWAY          AWAY
+ Oklahoma City Thunder Los Angeles Lakers       HOME          AWAY
+         Atlanta Hawks          Utah Jazz       HOME          HOME
+        Boston Celtics Washington Wizards       HOME          HOME
+   Cleveland Cavaliers   Sacramento Kings       HOME          AWAY
+Portland Trail Blazers  San Antonio Spurs       HOME          HOME
+       New York Knicks       Phoenix Suns       HOME          HOME
+        Denver Nuggets     Indiana Pacers       HOME          AWAY
+  New Orleans Pelicans    Milwaukee Bucks       AWAY          AWAY
+ Golden State Warriors    Houston Rockets       HOME          AWAY
+
+📊 Evaluating predictions...
+
+📅 Evaluating predictions for: 2025-04-06 using model v4_2
+
+✅ Model Accuracy: 60.00%
+
+📊 Classification Report:
+              precision    recall  f1-score  support
+AWAY               1.00  0.333333  0.500000      6.0
+HOME               0.50  1.000000  0.666667      4.0
+accuracy           0.60  0.600000  0.600000      0.6
+macro avg          0.75  0.666667  0.583333     10.0
+weighted avg       0.80  0.600000  0.566667     10.0
+
+📉 Confusion Matrix:
+             Predicted HOME  Predicted AWAY
+Actual HOME               4               0
+Actual AWAY               4               2
+
+💾 Saved evaluation to /Users/mk/nba-betting-ai/performance/accuracy_2025-04-06_v4_2.csv
+
+📈 Rolling Accuracy Overview:
+      date model  accuracy  rolling_accuracy
+2025-03-28  v4_2    0.8571           0.85710
+2025-03-29  v4_2    0.7143           0.78570
+2025-03-30  v4_2    0.7500           0.77380
+2025-03-31  v4_2    0.7500           0.76785
+2025-04-01  v4_2    0.7143           0.75714
+2025-04-03  v4_2    0.8333           0.75238
+2025-04-04  v4_2    0.9000           0.78952
+2025-04-05  v4_2    1.0000           0.83952
+2025-04-06  v4_2    0.6000           0.80952
+
+🔍 Matching file pattern: *_v4_2.csv
+📁 Files found: ['accuracy_2025-03-28_v4_2.csv', 'accuracy_2025-03-29_v4_2.csv', 'accuracy_2025-03-30_v4_2.csv', 'accuracy_2025-03-31_v4_2.csv', 'accuracy_2025-04-01_v4_2.csv', 'accuracy_2025-04-03_v4_2.csv', 'accuracy_2025-04-04_v4_2.csv', 'accuracy_2025-04-05_v4_2.csv', 'accuracy_2025-04-06_v4_2.csv']
+
+✅ Pipeline completed successfully.

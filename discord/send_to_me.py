@@ -1,11 +1,15 @@
+# discord/send_to_me.py
+
+import os
 import pandas as pd
 import requests
 from datetime import datetime, timedelta
+from dotenv import load_dotenv
 
-# === Config ===
-WEBHOOK_URL = "https://discord.com/api/webhooks/1356827527800164444/CmK3H6HBjxYzm6GM-CSe19ydRi_ZlllvVNnCGHazp8qnwcKX4LznXAwUy87QdxAcEW7G"  # PRIVATE webhook (for you)
+load_dotenv()  # ✅ Load .env variables
 
-# === Dates ===
+WEBHOOK_URL = os.getenv("PRIVATE_WEBHOOK")
+
 yesterday = (datetime.today() - timedelta(days=1)).strftime("%Y-%m-%d")
 file_path = f"predictions/predictions_{yesterday}_v4_2.csv"
 
@@ -16,7 +20,6 @@ try:
     if "actual_winner" not in df.columns:
         raise Exception("Missing actual_winner column.")
 
-    # === Calculate accuracy
     df["correct"] = df["prediction"] == df["actual_winner"]
     num_games = len(df)
     num_correct = df["correct"].sum()
@@ -24,11 +27,13 @@ try:
 
     message += f"✅ **Accuracy:** {accuracy:.1f}% ({num_correct}/{num_games})\n\n"
 
-    # === Game-by-game results
     for _, row in df.iterrows():
         prob = float(row["model_win_prob"]) * 100
         result = "✅" if row["prediction"] == row["actual_winner"] else "❌"
-        message += f"{row['awayteam']} @ {row['hometeam']} → Predicted: **{row['prediction']}** ({prob:.1f}%) → Final: **{row['actual_winner']}** {result}\n"
+        message += (
+            f"{row['awayteam']} @ {row['hometeam']} → Predicted: **{row['prediction']}** "
+            f"({prob:.1f}%) → Final: **{row['actual_winner']}** {result}\n"
+        )
 
 except Exception as e:
     message += f"⚠️ Could not load file: {file_path}\nError: {e}"

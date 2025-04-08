@@ -2,13 +2,19 @@
 
 import pandas as pd
 import requests
+import os
 from datetime import datetime
+from dotenv import load_dotenv
 
-WEBHOOK_URL = "https://discord.com/api/webhooks/1355435687947669586/bTak4yW7xjaFnUNK2ZbcQP18hBLUc7DQztf0E6C0X3iZQ0_ijdMneitMbq056JtGb6PB"  # Friends Webhook
+# === Load secrets from .env file ===
+load_dotenv()
+WEBHOOK_URL = os.getenv("FRIENDS_WEBHOOK")
 
+# === Date & file ===
 today = datetime.today().strftime("%Y-%m-%d")
 file_path = f"predictions/predictions_{today}_v4_2.csv"
 
+# === Build message ===
 message = f"📅 **{today} — AI Picks**\n\n"
 
 try:
@@ -19,6 +25,7 @@ try:
 except Exception as e:
     message += f"⚠️ Could not load picks for {today}: {e}"
 
+# === Send to Discord ===
 try:
     requests.post(WEBHOOK_URL, json={"content": message})
     print("✅ Sent picks to Friends!")
