@@ -1282,3 +1282,156 @@ Actual AWAY               4               2
 📁 Files found: ['accuracy_2025-03-28_v4_2.csv', 'accuracy_2025-03-29_v4_2.csv', 'accuracy_2025-03-30_v4_2.csv', 'accuracy_2025-03-31_v4_2.csv', 'accuracy_2025-04-01_v4_2.csv', 'accuracy_2025-04-03_v4_2.csv', 'accuracy_2025-04-04_v4_2.csv', 'accuracy_2025-04-05_v4_2.csv', 'accuracy_2025-04-06_v4_2.csv']
 
 ✅ Pipeline completed successfully.
+🚀 Starting NBA AI Prediction Pipeline...
+
+📡 Fetching NBA odds from The Odds API...
+🛑 Odds already exist for 2025-04-08 — skipping fetch.
+
+✅ Features saved to /Users/mk/nba-betting-ai/data/features_today_2025-04-08.csv
+🧠 Using Model: nba_model_v4_2.pkl (tuned + calibrated)
+🛑 Predictions already exist for today — skipping prediction step.
+
+📡 Fetching actual results for 2025-04-07...
+🛑 Actual results already present for 2025-04-07 — skipping fetch.
+
+📊 Evaluating predictions...
+
+📅 Evaluating predictions for: 2025-04-07 using model v4_2
+
+✅ Model Accuracy: 50.00%
+
+📊 Classification Report:
+              precision  recall  f1-score  support
+AWAY               0.00     0.0  0.000000      1.0
+HOME               0.50     1.0  0.666667      1.0
+accuracy           0.50     0.5  0.500000      0.5
+macro avg          0.25     0.5  0.333333      2.0
+weighted avg       0.25     0.5  0.333333      2.0
+
+📉 Confusion Matrix:
+             Predicted HOME  Predicted AWAY
+Actual HOME               1               0
+Actual AWAY               1               0
+
+💾 Saved evaluation to /Users/mk/nba-betting-ai/performance/accuracy_2025-04-07_v4_2.csv
+
+📈 Rolling Accuracy Overview:
+      date model  accuracy  rolling_accuracy
+2025-03-28  v4_2    0.8571           0.85710
+2025-03-29  v4_2    0.7143           0.78570
+2025-03-30  v4_2    0.7500           0.77380
+2025-03-31  v4_2    0.7500           0.76785
+2025-04-01  v4_2    0.7143           0.75714
+2025-04-03  v4_2    0.8333           0.75238
+2025-04-04  v4_2    0.9000           0.78952
+2025-04-05  v4_2    1.0000           0.83952
+2025-04-06  v4_2    0.6000           0.80952
+2025-04-07  v4_2    0.5000           0.76666
+
+🔍 Matching file pattern: *_v4_2.csv
+📁 Files found: ['accuracy_2025-03-28_v4_2.csv', 'accuracy_2025-03-29_v4_2.csv', 'accuracy_2025-03-30_v4_2.csv', 'accuracy_2025-03-31_v4_2.csv', 'accuracy_2025-04-01_v4_2.csv', 'accuracy_2025-04-03_v4_2.csv', 'accuracy_2025-04-04_v4_2.csv', 'accuracy_2025-04-05_v4_2.csv', 'accuracy_2025-04-06_v4_2.csv', 'accuracy_2025-04-07_v4_2.csv']
+
+✅ Pipeline completed successfully.
+🚀 Starting NBA AI Prediction Pipeline...
+
+📡 Fetching NBA odds from The Odds API...
+🛑 Odds already exist for 2025-04-09 — skipping fetch.
+
+✅ Features saved to /Users/mk/nba-betting-ai/data/features_today_2025-04-09.csv
+🧠 Using Model: nba_model_v4_2.pkl (tuned + calibrated)
+🛑 Predictions already exist for today — skipping prediction step.
+
+📡 Fetching actual results for 2025-04-08...
+🛑 Actual results already present for 2025-04-08 — skipping fetch.
+
+📊 Evaluating predictions...
+
+📅 Evaluating predictions for: 2025-04-08 using model v4_2
+
+✅ Model Accuracy: 70.00%
+
+📊 Classification Report:
+              precision    recall  f1-score  support
+AWAY               0.50  1.000000  0.666667      3.0
+HOME               1.00  0.571429  0.727273      7.0
+accuracy           0.70  0.700000  0.700000      0.7
+macro avg          0.75  0.785714  0.696970     10.0
+weighted avg       0.85  0.700000  0.709091     10.0
+
+📉 Confusion Matrix:
+             Predicted HOME  Predicted AWAY
+Actual HOME               4               3
+Actual AWAY               0               3
+
+💾 Saved evaluation to /Users/mk/nba-betting-ai/performance/accuracy_2025-04-08_v4_2.csv
+
+📈 Rolling Accuracy Overview:
+      date model  accuracy  rolling_accuracy
+2025-03-28  v4_2    0.8571           0.85710
+2025-03-29  v4_2    0.7143           0.78570
+2025-03-30  v4_2    0.7500           0.77380
+2025-03-31  v4_2    0.7500           0.76785
+2025-04-01  v4_2    0.7143           0.75714
+2025-04-03  v4_2    0.8333           0.75238
+2025-04-04  v4_2    0.9000           0.78952
+2025-04-05  v4_2    1.0000           0.83952
+2025-04-06  v4_2    0.6000           0.80952
+2025-04-07  v4_2    0.5000           0.76666
+2025-04-08  v4_2    0.7000           0.74000
+
+🔍 Matching file pattern: *_v4_2.csv
+📁 Files found: ['accuracy_2025-03-28_v4_2.csv', 'accuracy_2025-03-29_v4_2.csv', 'accuracy_2025-03-30_v4_2.csv', 'accuracy_2025-03-31_v4_2.csv', 'accuracy_2025-04-01_v4_2.csv', 'accuracy_2025-04-03_v4_2.csv', 'accuracy_2025-04-04_v4_2.csv', 'accuracy_2025-04-05_v4_2.csv', 'accuracy_2025-04-06_v4_2.csv', 'accuracy_2025-04-07_v4_2.csv', 'accuracy_2025-04-08_v4_2.csv']
+
+✅ Pipeline completed successfully.
+🚀 Starting NBA AI Prediction Pipeline...
+
+📡 Fetching NBA odds from The Odds API...
+🛑 Odds already exist for 2025-04-10 — skipping fetch.
+
+✅ Features saved to /Users/mk/nba-betting-ai/data/features_today_2025-04-10.csv
+🧠 Using Model: nba_model_v4_2.pkl (tuned + calibrated)
+🛑 Predictions already exist for today — skipping prediction step.
+
+📡 Fetching actual results for 2025-04-09...
+🛑 Actual results already present for 2025-04-09 — skipping fetch.
+
+📊 Evaluating predictions...
+
+📅 Evaluating predictions for: 2025-04-09 using model v4_2
+
+✅ Model Accuracy: 70.00%
+
+📊 Classification Report:
+              precision  recall  f1-score  support
+AWAY           0.666667     0.8  0.727273      5.0
+HOME           0.750000     0.6  0.666667      5.0
+accuracy       0.700000     0.7  0.700000      0.7
+macro avg      0.708333     0.7  0.696970     10.0
+weighted avg   0.708333     0.7  0.696970     10.0
+
+📉 Confusion Matrix:
+             Predicted HOME  Predicted AWAY
+Actual HOME               3               2
+Actual AWAY               1               4
+
+💾 Saved evaluation to /Users/mk/nba-betting-ai/performance/accuracy_2025-04-09_v4_2.csv
+
+📈 Rolling Accuracy Overview:
+      date model  accuracy  rolling_accuracy
+2025-03-28  v4_2    0.8571           0.85710
+2025-03-29  v4_2    0.7143           0.78570
+2025-03-30  v4_2    0.7500           0.77380
+2025-03-31  v4_2    0.7500           0.76785
+2025-04-01  v4_2    0.7143           0.75714
+2025-04-03  v4_2    0.8333           0.75238
+2025-04-04  v4_2    0.9000           0.78952
+2025-04-05  v4_2    1.0000           0.83952
+2025-04-06  v4_2    0.6000           0.80952
+2025-04-07  v4_2    0.5000           0.76666
+2025-04-08  v4_2    0.7000           0.74000
+2025-04-09  v4_2    0.7000           0.70000
+
+🔍 Matching file pattern: *_v4_2.csv
+📁 Files found: ['accuracy_2025-03-28_v4_2.csv', 'accuracy_2025-03-29_v4_2.csv', 'accuracy_2025-03-30_v4_2.csv', 'accuracy_2025-03-31_v4_2.csv', 'accuracy_2025-04-01_v4_2.csv', 'accuracy_2025-04-03_v4_2.csv', 'accuracy_2025-04-04_v4_2.csv', 'accuracy_2025-04-05_v4_2.csv', 'accuracy_2025-04-06_v4_2.csv', 'accuracy_2025-04-07_v4_2.csv', 'accuracy_2025-04-08_v4_2.csv', 'accuracy_2025-04-09_v4_2.csv']
+
+✅ Pipeline completed successfully.
