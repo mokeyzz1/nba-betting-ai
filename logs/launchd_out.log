@@ -1435,3 +1435,62 @@ Actual AWAY               1               4
 📁 Files found: ['accuracy_2025-03-28_v4_2.csv', 'accuracy_2025-03-29_v4_2.csv', 'accuracy_2025-03-30_v4_2.csv', 'accuracy_2025-03-31_v4_2.csv', 'accuracy_2025-04-01_v4_2.csv', 'accuracy_2025-04-03_v4_2.csv', 'accuracy_2025-04-04_v4_2.csv', 'accuracy_2025-04-05_v4_2.csv', 'accuracy_2025-04-06_v4_2.csv', 'accuracy_2025-04-07_v4_2.csv', 'accuracy_2025-04-08_v4_2.csv', 'accuracy_2025-04-09_v4_2.csv']
 
 ✅ Pipeline completed successfully.
+🚀 Starting NBA AI Prediction Pipeline...
+
+📡 Fetching NBA odds from The Odds API...
+
+❌ Pipeline failed: HTTPSConnectionPool(host='api.the-odds-api.com', port=443): Max retries exceeded with url: /v4/sports/basketball_nba/odds?regions=us&markets=h2h&apiKey=a2323a916e16fc25d64c84ede464c626&oddsFormat=decimal (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x12fb64450>: Failed to resolve 'api.the-odds-api.com' ([Errno 8] nodename nor servname provided, or not known)"))
+🚀 Starting NBA AI Prediction Pipeline...
+
+📡 Fetching NBA odds from The Odds API...
+🛑 Odds already exist for 2025-04-12 — skipping fetch.
+
+✅ Features saved to /Users/mk/nba-betting-ai/data/features_today_2025-04-12.csv
+🧠 Using Model: nba_model_v4_2.pkl (tuned + calibrated)
+❌ No valid games to predict.
+
+📡 Fetching actual results for 2025-04-11...
+🛑 Actual results already present for 2025-04-11 — skipping fetch.
+
+📊 Evaluating predictions...
+
+📅 Evaluating predictions for: 2025-04-11 using model v4_2
+
+✅ Model Accuracy: 80.00%
+
+📊 Classification Report:
+              precision  recall  f1-score  support
+AWAY               1.00  0.6250  0.769231      8.0
+HOME               0.70  1.0000  0.823529      7.0
+accuracy           0.80  0.8000  0.800000      0.8
+macro avg          0.85  0.8125  0.796380     15.0
+weighted avg       0.86  0.8000  0.794570     15.0
+
+📉 Confusion Matrix:
+             Predicted HOME  Predicted AWAY
+Actual HOME               7               0
+Actual AWAY               3               5
+
+💾 Saved evaluation to /Users/mk/nba-betting-ai/performance/accuracy_2025-04-11_v4_2.csv
+
+📈 Rolling Accuracy Overview:
+      date model  accuracy  rolling_accuracy
+2025-03-28  v4_2    0.8571           0.85710
+2025-03-29  v4_2    0.7143           0.78570
+2025-03-30  v4_2    0.7500           0.77380
+2025-03-31  v4_2    0.7500           0.76785
+2025-04-01  v4_2    0.7143           0.75714
+2025-04-03  v4_2    0.8333           0.75238
+2025-04-04  v4_2    0.9000           0.78952
+2025-04-05  v4_2    1.0000           0.83952
+2025-04-06  v4_2    0.6000           0.80952
+2025-04-07  v4_2    0.5000           0.76666
+2025-04-08  v4_2    0.7000           0.74000
+2025-04-09  v4_2    0.7000           0.70000
+2025-04-10  v4_2    1.0000           0.70000
+2025-04-11  v4_2    0.8000           0.74000
+
+🔍 Matching file pattern: *_v4_2.csv
+📁 Files found: ['accuracy_2025-03-28_v4_2.csv', 'accuracy_2025-03-29_v4_2.csv', 'accuracy_2025-03-30_v4_2.csv', 'accuracy_2025-03-31_v4_2.csv', 'accuracy_2025-04-01_v4_2.csv', 'accuracy_2025-04-03_v4_2.csv', 'accuracy_2025-04-04_v4_2.csv', 'accuracy_2025-04-05_v4_2.csv', 'accuracy_2025-04-06_v4_2.csv', 'accuracy_2025-04-07_v4_2.csv', 'accuracy_2025-04-08_v4_2.csv', 'accuracy_2025-04-09_v4_2.csv', 'accuracy_2025-04-10_v4_2.csv', 'accuracy_2025-04-11_v4_2.csv']
+
+✅ Pipeline completed successfully.
