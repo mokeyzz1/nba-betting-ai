@@ -1,16 +1,33 @@
 # Roadmap
 
-## The gap, stated plainly
+## The gap, measured on four recent seasons
 
-| | |
-|---|---|
-| Current position vs closing line | **−1% to −2% ROI** |
-| Bookmaker margin being paid | 3.81% |
-| Model accuracy vs market accuracy | 66.5% vs 68.0% |
+Tested on 4,835 games from 2021-22 through 2024-25 against real closing prices, using the current model with injuries and recency weighting:
 
-The model is not far off. It is 1.5 accuracy points behind the market and paying a 3.8% toll. Closing that gap needs roughly **2–3 percentage points of ROI** from somewhere.
+| edge threshold | bets | ROI | ±1 s.e. |
+|---|---|---|---|
+| 0% | 4,835 | −4.18% | 1.95 |
+| 3% | 3,340 | −4.81% | 2.38 |
+| 5% | 2,531 | −4.98% | 2.76 |
+| 10% | 1,146 | −2.53% | 4.22 |
 
-This document ranks the available sources by expected value and by how confident we can be that they exist. Confidence matters more than size: a speculative 5% is worth less than a mechanical 2%.
+Head to head on the same games, the market wins on every measure: accuracy .6782 vs .6585, log loss .5998 vs .6188, AUC .7322 vs .7084.
+
+**The deficit is not mostly vig.** Re-settling the identical bets at the de-vigged fair price — bookmaker margin removed entirely — still loses 0.76% at a 3% edge and 0.94% at 5%. When this model disagrees with the market, the model is usually the one that is wrong.
+
+This finding overrides the earlier version of this document, which ranked cheaper execution as comparable in size to the whole deficit. It is not. A free bet at a fair price would still lose money.
+
+## What has been ruled out
+
+Recorded so nobody re-tests them:
+
+- **Cheaper venue alone.** Prediction markets save roughly 3 points of vig. At zero vig the model still loses at every threshold below 10%.
+- **Public betting percentages.** The recent odds data carries money-share and ticket-share per side. Following the sharp side (money% exceeding ticket%) returns −7.3% to −12.4%. Fading the public returns −5.8% to −6.3%. Correlation between the sharp signal and the market's own error is −0.028 on 4,426 games: the market has already priced it.
+- **Bigger models.** XGBoost at depth 3 and 5 both scored worse than regularised logistic regression on the same features.
+
+## What remains
+
+Confidence matters more than size: a mechanical 2% beats a speculative 5%. But note that nothing below is currently known to close a 4-5 point gap.
 
 ---
 
@@ -30,22 +47,15 @@ This is the only lever that pays regardless of model quality. A better price is 
 
 ---
 
-### 2. Player-level features — *moderate confidence, unknown size*
+### 2. Player-level features — *partly done; lineup work remains*
 
-**Status:** not started. `data/PlayerStatistics.csv` is 305 MB of real game logs and the model has never touched it.
+**Injuries: shipped.** Official NBA injury reports, weighted by each player's pre-game minutes ([`src/backtest/injuries.py`](src/backtest/injuries.py), [`injury_features.py`](src/backtest/injury_features.py)). Over 6,106 games this improved accuracy .6592 → .6639 and AUC .7090 → .7155, better in every season where the feature is live. Real, consistent, and much smaller than the remaining gap.
 
-The current 12 features are all team-level. Everything about *who is actually playing* is invisible to the model — and that is precisely where public markets are slowest to adjust.
+**Lineups: not started.** [`pbpstats`](https://pypi.org/project/pbpstats/) (MIT) parses play-by-play into possessions with the five players on the floor. That is the one substantial source of information the model still cannot see: it treats a team as a fixed unit, so it cannot distinguish a starting five from a bench-heavy rotation on the second night of a back-to-back.
 
-Concretely available without any new data source:
+**Why moderate confidence:** the market prices injuries and rest too, and fast — the injury result above is evidence of exactly that, a real signal worth only a fraction of a point. The edge, if any, is in second-order effects on rotation and pace rather than in "star is out", which every book already knows.
 
-- **Minutes trends as an injury proxy.** A rotation player whose minutes collapse over three games is hurt, resting, or benched. No injury API needed.
-- **Lineup strength.** Aggregate recent player-level production for the players actually available, rather than treating the team as a fixed unit.
-- **Player-level Elo or plus-minus**, rolled up to the matchup.
-- **Star availability**, which moves lines several points and is the single largest source of price movement.
-
-**Why moderate confidence:** the market prices injuries too, and fast. The edge is in *degree* — books adjust for a star being out, less reliably for the second-order effects on rotation and pace. Worth testing; not guaranteed.
-
-**Work:** extend `dataset.py` with player-derived features under the same leakage discipline (strictly pre-tipoff, `.shift(1)` on every window), then re-run the harness. The harness already exists, so this is measurable the day it is built.
+**Work:** extend `dataset.py` with lineup-derived features under the same leakage discipline (strictly pre-tipoff, `.shift(1)` on every window), then re-run the harness.
 
 ---
 
@@ -83,32 +93,36 @@ This is why the calibration fix mattered. Kelly staked on inflated probabilities
 
 | | ROI |
 |---|---|
-| Today | −1.5% |
-| + line shopping (conservative) | +0.5% |
-| + any real gain from player features | +1% to +2% |
+| Today, measured | −4.2% to −4.8% |
+| + line shopping (1–2%) | −3% |
+| + prediction-market pricing (~3%) | −1% to −2% |
 
-That path leads to **thin but positive**, not to the +15.3% this project once claimed.
+Stacking both known levers still does not reach break-even, because both act on execution cost and the deficit is mostly model error. They are worth taking once there is an edge to protect. They do not create one.
 
-Two things to be clear-eyed about at that level:
-
-1. **Detection takes hundreds of bets.** At +2% ROI with typical variance, distinguishing real edge from noise takes on the order of 1,000 wagers. The 121-bet live sample says almost nothing on its own.
-2. **Books limit winners.** A consistently profitable account gets stake-limited. This constrains the ceiling regardless of model quality.
-
----
+Two constraints still apply if that ever changes: edge at these magnitudes needs on the order of 1,000 wagers to detect, and books limit accounts that win.
 
 ## Sequence
 
-**Phase 1 — Consolidate (before October)**
-Remove the ~26 dead files (broken imports, old-laptop paths, duplicates, one empty file). Fix the daily pipeline: it currently saves predictions under one name and grades under another, so grading never runs, and a bare `except` hides the failure. Replace the two broken ROI evaluators with `src/backtest/odds.py`. Delete or quarantine every module that generates synthetic data in a live path.
+**Phase 1 — Consolidate.** *Done.* 31 dead files removed, the version mismatch that stopped the pipeline ever grading itself is fixed, both broken ROI evaluators are replaced, mock data is opt-in, and the model refuses to predict on frozen features.
 
-**Phase 2 — Wire in line shopping**
-Route live odds through the multi-book fetcher. Record the book behind every price. This is the highest certainty-per-hour work available.
+**Phase 2 — Line shopping.** *Built, not wired to a live season.* `predict_daily.py` prices at the best available number across books; it has not run against real games because the season starts in late October.
 
-**Phase 3 — Player features**
-Build them against the existing harness. Measure honestly; keep what survives.
+**Phase 3 — Model.** *Injuries done, lineups open.* See lever 2.
 
-**Phase 4 — Restore the live loop**
-Daily automation for the October season start, logging odds at multiple timestamps so closing-line value can be measured going forward.
+**Phase 4 — Live loop.** Daily automation for the October start, logging odds at several timestamps so closing-line value can be measured going forward. CLV is the reason to bother: it reads edge in roughly 50 bets where ROI needs on the order of 1,000.
+
+**Known gap in the live path.** `predict_daily.py` currently hardcodes `rest_diff`, `b2b_diff` and the three injury features to zero, because the schedule join and same-day injury fetch are not wired. That is 5 of 15 features frozen at serve time — the same defect this project removed from the Hybrid Elite model, and it must be fixed before the pipeline runs for real.
+
+## The honest question
+
+Four seasons of testing say this model loses to the closing line by about 4 points, and by about 1 point even with the vig removed. Nothing on the list above is known to close that.
+
+That is the normal outcome. NBA moneyline aggregates enormous amounts of money and information, and independent models built on public data usually land here. Two responses are reasonable, and neither is giving up:
+
+- **Change the target.** Less efficient markets — props, lower-liquidity lines — are where inefficiency actually lives. That needs prop odds data this project does not have.
+- **Keep it as an instrument.** The harness, the leakage checks and the honest reporting are the valuable artefacts. They make this a credible engineering project regardless of whether it ever turns a profit.
+
+What is no longer reasonable is expecting execution improvements to close a model-sized gap.
 
 ---
 
