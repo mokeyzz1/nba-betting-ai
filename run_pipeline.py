@@ -21,11 +21,10 @@ import traceback
 from datetime import datetime, timedelta
 
 from src.evaluate.evaluate_predictions import evaluate_results
-from src.features.get_odds import fetch_odds
-from src.features.get_today_games_features import build_features
+from src.evaluate.evaluate_roi import grade_all
 from src.monitor.rolling_accuracy import update_rolling_accuracy
 from src.pipeline.fetch_actual_winners import fetch_actual_results
-from src.prediction.predict_today_enhanced import run_predictions
+from src.prediction.predict_daily import run_predictions
 from src.utils.config import MODEL_VERSION, predictions_path
 
 
@@ -54,19 +53,18 @@ def main() -> int:
     print("=" * 70)
 
     # --- today: produce picks -------------------------------------------
-    odds = _step("Fetch odds", fetch_odds)
+    # predict_daily fetches its own prices across all books and builds
+    # features from dataset.current_team_state(), so the live feature code
+    # and the backtest feature code are literally the same code.
+    preds = _step("Predict today's games", run_predictions)
 
     # No games is a normal condition (offseason, All-Star break, a quiet
     # Monday), not a failure. Distinguish it from a real fault, or the
     # difference gets lost in a stack trace and the logs stop being readable.
-    n_games = 0 if odds is None else len(odds)
-    if n_games == 0:
-        print(f"\n>>> No NBA games scheduled for {today_str}. Nothing to predict.")
+    if preds is None or len(preds) == 0:
+        print(f"\n>>> No NBA games with odds for {today_str}. Nothing to predict.")
         print("    (This is expected out of season. Not an error.)")
         return 0
-
-    _step("Build features", build_features)
-    _step("Run predictions", run_predictions)
 
     # The predictor must actually have written the file the grader will look
     # for tomorrow. Checking here turns a silent mismatch into a visible one.
@@ -76,7 +74,8 @@ def main() -> int:
         print("    The grader will find nothing tomorrow. Check that the")
         print("    predictor derives its filename from config.MODEL_VERSION.")
         return 1
-    print(f"\n    predictions written: {expected.name}")
+    print(f"\n    predictions written: {expected.name}  "
+          f"({int(preds['bet'].sum())} bet(s) above the edge threshold)")
 
     # --- yesterday: grade -----------------------------------------------
     # Optional: no games yesterday is normal, and should not fail the run.
@@ -88,6 +87,9 @@ def main() -> int:
               date=yesterday, model_version=MODEL_VERSION, required=False)
         _step("Update rolling accuracy", update_rolling_accuracy,
               model_version=MODEL_VERSION, required=False)
+        # ROI through the tested odds math, not the decimal-on-American
+        # arithmetic that produced -376% in the old rolling log.
+        _step("Grade ROI to date", grade_all, required=False)
     else:
         print(f"\n>>> Grading skipped: no predictions file for {yesterday}")
 

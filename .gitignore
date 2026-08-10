@@ -19,6 +19,7 @@ __pycache__/
 
 # --- Trained model binaries (regenerate from source; too large for git) ---
 models/*.pkl
+!models/nba_honest_v1.pkl
 
 # --- Large datasets (regenerate via data pipeline) ---
 data/NBA_Database.sql

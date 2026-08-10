@@ -1,0 +1,37 @@
+{
+  "name": "nba_honest_v1",
+  "trained_at": "2026-08-10T18:26:02",
+  "features": [
+    "elo_diff",
+    "home_elo",
+    "away_elo",
+    "win_pct_5_diff",
+    "win_pct_10_diff",
+    "margin_5_diff",
+    "margin_10_diff",
+    "off_form_diff",
+    "def_form_diff",
+    "season_win_pct_diff",
+    "rest_diff",
+    "b2b_diff",
+    "inj_burden_diff",
+    "inj_burden_out_diff",
+    "inj_listed_diff"
+  ],
+  "n_train_games": 66731,
+  "train_span": [
+    "1947-01-18",
+    "2026-06-13"
+  ],
+  "half_life_days": 1460.0,
+  "uses_odds_as_feature": false,
+  "holdout_metrics": {
+    "holdout_season": 2026,
+    "holdout_games": 1231,
+    "accuracy": 0.6823720552396426,
+    "auc": 0.7458405370216217,
+    "log_loss": 0.591000734972943,
+    "ece": 0.027521863607873814
+  },
+  "notes": "Recency-weighted logistic regression on pre-tipoff features only. Odds are deliberately excluded so model probability and market probability stay independent and edge means something."
+}

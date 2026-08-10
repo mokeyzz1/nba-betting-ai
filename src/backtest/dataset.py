@@ -246,6 +246,36 @@ def build(require_odds: bool = True, verbose: bool = True, include_recent: bool 
     return g
 
 
+def current_team_state(g: pd.DataFrame | None = None) -> pd.DataFrame:
+    """Each team's latest pre-game state, for predicting games not yet played.
+
+    This exists so live prediction and backtesting cannot drift apart. The
+    v4.2 model failed in exactly that way: training computed
+    `implied_home_win_pct = 1 / home_odds` while serving used the correct
+    American-odds conversion, so three features arrived ~100x off the scale
+    the model learned. Here the features are produced by build() either way --
+    we take the last row per team and roll its post-game state forward, rather
+    than reimplementing Elo and the rolling windows for the live path.
+    """
+    if g is None:
+        g = build(require_odds=False, verbose=False, include_recent=True)
+
+    rows = []
+    for team_col, side in (("hometeamId", "home"), ("awayteamId", "away")):
+        sub = g[[team_col, "date", f"{side}_team", f"{side}_elo",
+                 f"{side}_win_pct_5", f"{side}_win_pct_10",
+                 f"{side}_margin_5", f"{side}_margin_10",
+                 f"{side}_pts_10", f"{side}_opp_pts_10",
+                 f"{side}_season_win_pct"]].copy()
+        sub.columns = ["team_id", "date", "team", "elo", "win_pct_5", "win_pct_10",
+                       "margin_5", "margin_10", "pts_10", "opp_pts_10", "season_win_pct"]
+        rows.append(sub)
+
+    long = pd.concat(rows, ignore_index=True).sort_values("date")
+    latest = long.groupby("team_id", as_index=False).last()
+    return latest
+
+
 def assert_no_leakage(g: pd.DataFrame, verbose: bool = True) -> None:
     """Fail loudly if a feature looks fabricated or post-hoc.
 

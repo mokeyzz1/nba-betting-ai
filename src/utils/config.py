@@ -27,7 +27,7 @@ PERFORMANCE_DIR.mkdir(parents=True, exist_ok=True)
 # Anything that writes a prediction file and anything that grades one must
 # derive its name from here.
 # ---------------------------------------------------------------------------
-MODEL_VERSION = "hybrid_elite"
+MODEL_VERSION = "honest_v1"
 
 
 def predictions_path(date_str: str, model_version: str = MODEL_VERSION) -> Path:
