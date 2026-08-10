@@ -2,7 +2,7 @@
 
 from src.features.get_odds import fetch_odds
 from src.features.get_today_games_features import build_features
-from src.prediction.predict_today_api_only_1 import run_predictions
+from src.prediction.predict_today_enhanced import run_predictions
 from src.evaluate.evaluate_predictions import evaluate_results
 from src.pipeline.fetch_actual_winners import fetch_actual_results
 from src.monitor.rolling_accuracy import update_rolling_accuracy
@@ -13,7 +13,7 @@ def main():
     print("🚀 Starting NBA AI Prediction Pipeline...\n")
 
     # === Define model version and dates ===
-    model_version = "v4_2"
+    model_version = "v4_3_enhanced"  # Upgraded to 36-feature model
     today = datetime.today()
     yesterday = (today - timedelta(days=1)).strftime('%Y-%m-%d')
 

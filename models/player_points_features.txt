@@ -1,0 +1,14 @@
+points_last_5
+points_last_10
+points_last_15
+minutes_last_5
+minutes_last_10
+fg_pct_last_5
+fg_attempts_last_5
+points_trend_3
+home_away_diff
+opponent_strength
+season_ppg
+season_mpg
+points_consistency
+home

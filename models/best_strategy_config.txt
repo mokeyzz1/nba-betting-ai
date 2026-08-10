@@ -1,0 +1,3 @@
+threshold: 0.35
+min_agree: 3
+expected_roi: 5.3%

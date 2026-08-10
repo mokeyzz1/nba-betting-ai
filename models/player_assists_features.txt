@@ -1,0 +1,16 @@
+assists_last_5
+assists_last_10
+assists_last_15
+minutes_last_5
+fga_last_5
+turnovers_last_5
+ast_to_last_5
+assists_trend_3
+home_away_ast_diff
+season_apg
+season_ast_to
+assists_consistency
+position_playmaker
+position_secondary
+opponent_strength
+home

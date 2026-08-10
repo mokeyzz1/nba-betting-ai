@@ -1,0 +1,2 @@
+hometeam,awayteam,home_odds,away_odds,off_rating_diff,def_rating_diff,recent_win_diff,pace_diff,home_recent_avg_pts,away_recent_avg_pts,home_EFG_PCT,away_EFG_PCT,odds_diff,implied_home_win_pct,implied_away_win_pct,implied_win_diff,model_win_prob,prediction,predicted_odds,implied_prob,value_gap,value_flag,actual_winner
+Golden State Warriors,Memphis Grizzlies,-238,180,1.0,-6.400000000000006,0.0,-4.309999999999988,110,110,0.533,0.555,-418,0.7041420118343196,0.3571428571428571,0.3469991546914624,0.7242817878723145,HOME,-238,0.7041420118343196,0.0201397760379948,–,HOME

@@ -1,0 +1,17 @@
+rebounds_last_5
+rebounds_last_10
+rebounds_last_15
+oreb_last_5
+dreb_last_5
+minutes_last_5
+minutes_last_10
+rebounds_trend_3
+home_away_reb_diff
+opponent_strength
+season_rpg
+season_oreb_pct
+season_dreb_pct
+rebounds_consistency
+position_big
+position_wing
+home

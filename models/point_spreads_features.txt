@@ -1,0 +1,16 @@
+net_rating_diff
+off_rating_diff
+def_rating_diff
+pie_diff
+ts_diff
+efg_diff
+tov_diff
+reb_battle_diff
+pace_diff
+avg_pace
+recent_form_diff
+net_rank_diff
+pie_rank_diff
+home_court_advantage
+market_prob_diff
+overall_strength_diff

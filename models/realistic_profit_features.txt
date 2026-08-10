@@ -1,0 +1,13 @@
+NET_gap
+PIE_advantage
+home_PIE
+away_PIE
+TS_advantage
+EFG_advantage
+market_juice
+home_heavy_favorite
+away_heavy_favorite
+home_sweet_underdog
+away_sweet_underdog
+stat_home_prob
+market_vs_stats

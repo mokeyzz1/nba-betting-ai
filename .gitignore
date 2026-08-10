@@ -1,9 +1,36 @@
-data/NBA_Database.sql
-data/PlayerStatistics.csv
-data/NBA_Database.sql
-data/PlayerStatistics.csv
-
-# 🔒 Ignore sensitive config and secrets
+# --- Secrets ---
 .env
 discord/send_to_friends.py
 discord/send_to_me.py
+
+# --- Virtualenvs ---
+.venv/
+nba-env/
+venv/
+
+# --- Python noise ---
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ipynb_checkpoints/
+
+# --- OS noise ---
+.DS_Store
+
+# --- Trained model binaries (regenerate from source; too large for git) ---
+models/*.pkl
+
+# --- Large datasets (regenerate via data pipeline) ---
+data/NBA_Database.sql
+data/PlayerStatistics.csv
+data/Games.csv
+data/TeamStatistics.csv
+data/*_full_features*.csv
+data/merged_games_with_odds.csv
+data/final_games_with_advanced_stats.csv
+data/cleaned_nba_games.csv
+data/dropped_games.csv
+data/nba_data.db
+
+# --- Logs ---
+logs/*.log

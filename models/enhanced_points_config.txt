@@ -1,0 +1,19 @@
+ENHANCED POINTS SYSTEM CONFIGURATION
+==================================================
+
+VALUE THRESHOLDS:
+  min_confidence: 0.65
+  min_edge: 0.1
+  min_model_agreement: 0.7
+  max_daily_bets: 8
+  target_roi: 61.36206896551724
+
+POINT LINES: [15.5, 20.5, 25.5, 30.5]
+FEATURES: 31
+MODELS PER LINE: 4
+
+BACKTEST RESULTS:
+  15.5: +63.7% ROI (35 bets)
+  20.5: +65.5% ROI (15 bets)
+  25.5: +14.6% ROI (5 bets)
+  30.5: +91.0% ROI (3 bets)

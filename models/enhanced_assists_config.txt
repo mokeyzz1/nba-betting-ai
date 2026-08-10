@@ -1,0 +1,21 @@
+ENHANCED ASSISTS SYSTEM CONFIGURATION
+==================================================
+
+VALUE THRESHOLDS:
+  min_confidence: 0.7
+  min_edge: 0.12
+  min_model_agreement: 0.75
+  max_daily_bets: 6
+  target_roi: 59.68852459016394
+
+ASSIST LINES: [2.5, 3.5, 4.5, 5.5, 6.5, 7.5]
+FEATURES: 41
+MODELS PER LINE: 4
+
+BACKTEST RESULTS:
+  2.5: +50.8% ROI (19 bets)
+  3.5: +72.8% ROI (21 bets)
+  4.5: +27.3% ROI (3 bets)
+  5.5: +43.2% ROI (8 bets)
+  6.5: +67.1% ROI (8 bets)
+  7.5: +91.0% ROI (2 bets)

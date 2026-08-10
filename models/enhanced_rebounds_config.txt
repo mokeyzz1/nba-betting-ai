@@ -1,0 +1,20 @@
+ENHANCED REBOUNDS SYSTEM CONFIGURATION
+==================================================
+
+VALUE THRESHOLDS:
+  min_confidence: 0.68
+  min_edge: 0.11
+  min_model_agreement: 0.72
+  max_daily_bets: 7
+  target_roi: 39.57692307692308
+
+REBOUND LINES: [4.5, 6.5, 8.5, 10.5, 12.5]
+FEATURES: 49
+MODELS PER LINE: 4
+
+BACKTEST RESULTS:
+  4.5: +32.2% ROI (13 bets)
+  6.5: +27.3% ROI (24 bets)
+  8.5: +27.3% ROI (6 bets)
+  10.5: +91.0% ROI (8 bets)
+  12.5: +91.0% ROI (1 bets)
