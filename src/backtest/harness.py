@@ -27,6 +27,7 @@ from sklearn.metrics import accuracy_score, log_loss, roc_auc_score
 from sklearn.preprocessing import StandardScaler
 
 from src.backtest import dataset
+from src.backtest.calibration import recency_weights
 from src.backtest.odds import implied_prob_array, settle
 
 MIN_TRAIN_SEASONS = 3
@@ -43,8 +44,16 @@ def _make_model():
     return make_pipeline(StandardScaler(), LogisticRegression(C=0.1, max_iter=2000))
 
 
-def walk_forward(df: pd.DataFrame, features: list[str] | None = None, verbose: bool = True) -> pd.DataFrame:
-    """Train on all prior seasons, predict the next. Returns per-game predictions."""
+def walk_forward(df: pd.DataFrame, features: list[str] | None = None,
+                 verbose: bool = True, half_life_days: float | None = 1460.0) -> pd.DataFrame:
+    """Train on all prior seasons, predict the next. Returns per-game predictions.
+
+    Samples are recency-weighted by default (four-year half-life). Unweighted,
+    the model inherits a home-court edge from decades when it was ~58%, and
+    over-predicts the home side by 5-10 points against the current ~55%.
+    Weighting cuts expected calibration error roughly in half; see
+    src/backtest/calibration.py. Pass half_life_days=None to disable.
+    """
     features = features or dataset.FEATURES
     seasons = sorted(df["season"].unique())
     out = []
@@ -58,7 +67,12 @@ def walk_forward(df: pd.DataFrame, features: list[str] | None = None, verbose: b
             continue
 
         model = _make_model()
-        model.fit(train[features], train["home_win"])
+        if half_life_days:
+            w = recency_weights(train["date"], half_life_days)
+            model.fit(train[features], train["home_win"],
+                      logisticregression__sample_weight=w)
+        else:
+            model.fit(train[features], train["home_win"])
 
         t = test.copy()
         t["model_prob"] = model.predict_proba(test[features])[:, 1]
