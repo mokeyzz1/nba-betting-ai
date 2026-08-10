@@ -40,3 +40,4 @@ logs/*.log
 data/injuries/
 data/player_stats_recent.csv
 data/games_recent.csv
+data/odds_recent.csv
