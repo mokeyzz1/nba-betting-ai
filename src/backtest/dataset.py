@@ -28,19 +28,39 @@ ELO_HOME_EDGE = 100.0        # ~65% home win rate historically
 ELO_SEASON_CARRY = 0.75      # regress toward mean between seasons
 
 
-def _load_games() -> pd.DataFrame:
-    """One row per completed game, with real final scores."""
-    g = pd.read_csv(
-        DATA / "Games.csv",
-        usecols=[
-            "gameId", "gameDate", "gameType",
-            "hometeamCity", "hometeamName", "hometeamId",
-            "awayteamCity", "awayteamName", "awayteamId",
-            "homeScore", "awayScore",
-        ],
-        low_memory=False,
-    )
-    g["gameDate"] = pd.to_datetime(g["gameDate"], errors="coerce")
+def _load_games(include_recent: bool = True) -> pd.DataFrame:
+    """One row per completed game, with real final scores.
+
+    Games.csv stops at 2025-03-18. data/games_recent.csv (written by
+    src/backtest/backfill.py) carries 2024-25 and 2025-26 from the NBA API.
+    The two are concatenated before any feature is computed, because Elo and
+    the rolling windows need one unbroken chronological history -- splicing
+    them afterwards would reset every team's form at the join.
+    """
+    cols = [
+        "gameId", "gameDate", "gameType",
+        "hometeamCity", "hometeamName", "hometeamId",
+        "awayteamCity", "awayteamName", "awayteamId",
+        "homeScore", "awayScore",
+    ]
+    g = pd.read_csv(DATA / "Games.csv", usecols=cols, low_memory=False)
+    # Parse dates per source, BEFORE any concat. Games.csv carries timestamps
+    # ("2025-03-18 22:30:00") while the backfill writes bare dates
+    # ("2024-10-22"); handed a mixed column, pandas silently coerces the
+    # minority format to NaT and the newer season vanishes without an error.
+    g["gameDate"] = pd.to_datetime(g["gameDate"], format="mixed", errors="coerce")
+
+    recent_path = DATA / "games_recent.csv"
+    if include_recent and recent_path.exists():
+        r = pd.read_csv(recent_path)
+        r = r[[c for c in cols if c in r.columns]]
+        r["gameDate"] = pd.to_datetime(r["gameDate"], format="mixed", errors="coerce")
+        g = pd.concat([g, r], ignore_index=True)
+        # nba_api ids are zero-padded strings ("0022400001"); Games.csv uses
+        # ints. Normalise before de-duplicating the overlapping 2024-25 span.
+        g["gameId"] = pd.to_numeric(g["gameId"], errors="coerce")
+        g = g.dropna(subset=["gameId"])
+        g = g.drop_duplicates(subset=["gameId"], keep="first")
     g = g.dropna(subset=["gameDate", "homeScore", "awayScore", "hometeamId", "awayteamId"])
     g = g[(g["homeScore"] > 0) & (g["awayScore"] > 0)]
 
@@ -199,9 +219,9 @@ def _add_differentials(g: pd.DataFrame) -> pd.DataFrame:
     return g
 
 
-def build(require_odds: bool = True, verbose: bool = True) -> pd.DataFrame:
+def build(require_odds: bool = True, verbose: bool = True, include_recent: bool = True) -> pd.DataFrame:
     """Build the modelling table. Set require_odds=False to keep unpriced games."""
-    g = _load_games()
+    g = _load_games(include_recent=include_recent)
     if verbose:
         print(f"  games loaded          : {len(g):,}  ({g['date'].min().date()} -> {g['date'].max().date()})")
 
