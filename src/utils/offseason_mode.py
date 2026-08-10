@@ -188,10 +188,25 @@ class OffseasonMode:
 offseason = OffseasonMode()
 
 def is_offseason():
-    """Check if we're in offseason mode"""
-    # You can make this smarter by checking actual NBA schedule
-    current_month = datetime.now().month
-    return current_month in [6, 7, 8, 9]  # June-September typically offseason
+    """Whether to substitute mock data. OPT-IN, and deliberately so.
+
+    This used to return True automatically for June-September, which meant
+    every feature getter silently swapped in randomly generated team ratings
+    without failing or warning. That is how predictions/predictions_2025-08-17
+    came to pair real sportsbook odds with fabricated stats -- output that
+    looks exactly like a real prediction file and is worth nothing.
+
+    Mock data is fine for exercising the plumbing. It is not fine as a silent
+    fallback in a path that writes files someone might later trust. So it now
+    requires an explicit opt-in:
+
+        NBA_MOCK_DATA=1 python run_pipeline.py
+
+    Out of season without the flag, the pipeline fails instead of inventing
+    numbers -- which is the correct outcome, because there are no games.
+    """
+    import os
+    return os.getenv("NBA_MOCK_DATA", "").strip().lower() in ("1", "true", "yes")
 
 def get_mock_data_if_needed():
     """Get mock data if in offseason"""

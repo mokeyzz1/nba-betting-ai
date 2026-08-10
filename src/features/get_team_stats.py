@@ -69,18 +69,38 @@ def get_team_four_factors_differential(team_name_clean):
 
 def get_team_situational_stats(team_name_clean):
     """
-    Get situational performance (home/away, vs strong teams, etc.)
+    Situational splits, approximated deterministically from league averages.
+
+    This used to return unseeded np.random values on every call, in season as
+    well as out. Two live features built on it -- home_court_advantage and
+    overall_advantage -- were therefore pure noise that changed between runs,
+    so the same game could be scored differently twice in a row.
+
+    These are now fixed league-average adjustments: crude, but deterministic
+    and honest about being an approximation. Real per-team splits require
+    home/away game logs; until those are wired in, a constant offset is
+    strictly better than a random one, because it at least cannot masquerade
+    as signal.
     """
     base_stats = get_team_stats(team_name_clean)
-    
-    # Mock situational data - would be replaced with real data
+    net = base_stats["NET_RATING"]
+    off = base_stats["OFF_RATING"]
+
+    # League-average magnitudes, not team-specific measurements.
+    HOME_OFF_BOOST = 2.0      # teams score ~2 pts/100 better at home
+    AWAY_OFF_PENALTY = 2.0
+    STRONG_OPP_DRAG = 5.0
+    WEAK_OPP_BOOST = 5.0
+    B2B_DRAG = 3.0            # back-to-backs cost roughly 3 pts/100
+    RESTED_BOOST = 1.5
+
     return {
-        "home_off_rating": base_stats["OFF_RATING"] + np.random.uniform(2, 6),
-        "away_off_rating": base_stats["OFF_RATING"] - np.random.uniform(0, 4),
-        "vs_strong_teams": base_stats["NET_RATING"] - np.random.uniform(2, 8),
-        "vs_weak_teams": base_stats["NET_RATING"] + np.random.uniform(3, 10),
-        "back_to_back_rating": base_stats["NET_RATING"] - np.random.uniform(3, 8),
-        "well_rested_rating": base_stats["NET_RATING"] + np.random.uniform(1, 5)
+        "home_off_rating": off + HOME_OFF_BOOST,
+        "away_off_rating": off - AWAY_OFF_PENALTY,
+        "vs_strong_teams": net - STRONG_OPP_DRAG,
+        "vs_weak_teams": net + WEAK_OPP_BOOST,
+        "back_to_back_rating": net - B2B_DRAG,
+        "well_rested_rating": net + RESTED_BOOST,
     }
 
 def _generate_mock_team_stats(team_name_clean):

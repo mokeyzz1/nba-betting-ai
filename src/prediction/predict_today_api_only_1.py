@@ -5,10 +5,23 @@ import os
 from src.utils.team_name_mapping import TEAM_NAME_TO_ODDS_NAME
 from src.features.get_team_stats import get_team_stats
 from src.features.get_recent_stats import get_recent_win_pct, get_recent_avg_pts
-from src.utils.config import DATA_DIR, PREDICTIONS_DIR
+from src.utils.config import DATA_DIR, PREDICTIONS_DIR, MODELS_DIR
 
-# === Load model ===
-model = joblib.load("models/nba_model_v4_2.pkl")
+# Loaded lazily, not at import. This was previously a module-level
+# joblib.load("models/...") with a relative path, so merely importing this
+# module raised FileNotFoundError unless the process happened to be started
+# from the repository root.
+_model = None
+
+
+def _get_model():
+    global _model
+    if _model is None:
+        path = MODELS_DIR / "nba_model_v4_2.pkl"
+        if not path.exists():
+            raise FileNotFoundError(f"Model not found: {path}")
+        _model = joblib.load(path)
+    return _model
 
 def implied_prob(odds):
     if odds > 0:
@@ -115,7 +128,7 @@ def run_predictions():
     X = df[features].apply(pd.to_numeric, errors='coerce').dropna()
     df = df.loc[X.index]
 
-    df["model_win_prob"] = model.predict_proba(X)[:, 1]
+    df["model_win_prob"] = _get_model().predict_proba(X)[:, 1]
     df["prediction"] = df["model_win_prob"].apply(lambda p: "HOME" if p >= 0.5 else "AWAY")
     df["predicted_odds"] = df.apply(lambda x: x["home_odds"] if x["prediction"] == "HOME" else x["away_odds"], axis=1)
     df["implied_prob"] = df["predicted_odds"].apply(implied_prob)

@@ -13,5 +13,6 @@ nba_api
 # Dashboard / plots
 streamlit
 matplotlib
+seaborn
 
 # Note: xgboost needs OpenMP on macOS -> brew install libomp

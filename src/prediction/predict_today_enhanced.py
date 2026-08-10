@@ -5,7 +5,7 @@ import os
 from src.utils.team_name_mapping import TEAM_NAME_TO_ODDS_NAME
 from src.features.get_team_stats import get_team_stats
 from src.features.get_recent_stats import get_recent_win_pct, get_recent_avg_pts
-from src.utils.config import DATA_DIR, PREDICTIONS_DIR
+from src.utils.config import DATA_DIR, PREDICTIONS_DIR, MODEL_VERSION, predictions_path
 
 # === Load Hybrid Elite model (10.2% ROI) ===
 model = joblib.load("models/hybrid_elite_model_v1.pkl")
@@ -76,7 +76,9 @@ def run_predictions():
     # === Load today's odds CSV ===
     today_str = datetime.today().strftime('%Y-%m-%d')
     odds_file = DATA_DIR / f"nba_odds_{today_str}.csv"
-    save_path = PREDICTIONS_DIR / f"predictions_{today_str}_hybrid_elite.csv"
+    # Derived from config, not hand-formatted: the grader reads the same
+    # function, so the two cannot drift apart again.
+    save_path = predictions_path(today_str, MODEL_VERSION)
 
     # === Skip if predictions already exist ===
     if os.path.exists(save_path):
@@ -156,7 +158,26 @@ def run_predictions():
     print(f"✅ Using {len(available_features)} features for prediction")
     
     X = df[available_features].apply(pd.to_numeric, errors='coerce').fillna(0)
-    
+
+    # Refuse to predict on frozen features.
+    #
+    # This model wants PIE, PIE_RANK, TS_PCT and AST_TO, but get_team_stats()
+    # returns none of PIE, PIE_RANK or AST_TO -- so the .get(..., default)
+    # calls in calculate_hybrid_elite_features silently hand back the same
+    # constant for every team, and five of ten features carry no information.
+    # The model still emits confident-looking probabilities, which is worse
+    # than crashing. Fail loudly instead.
+    if len(X) > 1:
+        constant = [c for c in X.columns if X[c].nunique(dropna=False) <= 1]
+        if constant:
+            raise RuntimeError(
+                f"{len(constant)} of {len(X.columns)} features are constant across "
+                f"{len(X)} games: {constant}\n"
+                "These are placeholder defaults, not real values -- the upstream "
+                "stats provider does not supply them. Predictions built on them "
+                "are meaningless. Fix the feature source before running."
+            )
+
     # Make predictions
     df["model_win_prob"] = model.predict_proba(X)[:, 1]
     df["prediction"] = df["model_win_prob"].apply(lambda p: "HOME" if p >= 0.5 else "AWAY")
