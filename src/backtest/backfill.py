@@ -106,9 +106,70 @@ def run(seasons: list[str] | None = None, include_playoffs: bool = True) -> pd.D
     return games
 
 
+PLAYERS_OUT = DATA / "player_stats_recent.csv"
+
+
+def run_players(seasons: list[str] | None = None) -> pd.DataFrame:
+    """Player box scores for recent seasons.
+
+    data/PlayerStatistics.csv ends 2025-03-18. Without this, injury features
+    for 2025-26 have no minutes to weight by -- burden collapses to zero for
+    74% of games and the feature becomes noise that dilutes a real signal.
+    Written in PlayerStatistics.csv's column names so the two concatenate.
+    """
+    from nba_api.stats.endpoints import leaguegamelog
+
+    seasons = seasons or SEASONS
+    frames = []
+    for season in seasons:
+        for st in ("Regular Season", "Playoffs"):
+            try:
+                df = leaguegamelog.LeagueGameLog(
+                    season=season, player_or_team_abbreviation="P",
+                    season_type_all_star=st).get_data_frames()[0]
+                if len(df):
+                    df["season_type"] = st
+                    frames.append(df)
+                    print(f"  {season} {st:<14}: {len(df):>6,} player-games")
+            except Exception as e:
+                print(f"  {season} {st:<14}: FAILED {type(e).__name__}")
+            time.sleep(2.0)
+
+    if not frames:
+        raise RuntimeError("No player data returned")
+
+    df = pd.concat(frames, ignore_index=True)
+    name = df["PLAYER_NAME"].astype(str).str.strip()
+    out = pd.DataFrame({
+        "firstName": name.str.split(" ", n=1).str[0],
+        "lastName": name.str.split(" ", n=1).str[-1],
+        "gameId": df["GAME_ID"],
+        "gameDate": pd.to_datetime(df["GAME_DATE"]),
+        "numMinutes": pd.to_numeric(df["MIN"], errors="coerce").fillna(0.0),
+        "points": pd.to_numeric(df["PTS"], errors="coerce").fillna(0.0),
+    })
+    team = df["TEAM_NAME"].astype(str).str.strip()
+    out["playerteamCity"] = team.str.rsplit(" ", n=1).str[0]
+    out["playerteamName"] = team.str.rsplit(" ", n=1).str[-1]
+    # Preserve the exact full name; splitting on the first space mangles
+    # multi-word surnames ("Shai Gilgeous-Alexander" is fine, "Nickeil
+    # Alexander-Walker" is fine, but "Karl-Anthony Towns" needs the original).
+    out["fullName"] = name
+
+    out.to_csv(PLAYERS_OUT, index=False)
+    print(f"\n  wrote {len(out):,} player-games -> {PLAYERS_OUT.relative_to(BASE)}")
+    print(f"  range: {out['gameDate'].min().date()} -> {out['gameDate'].max().date()}")
+    return out
+
+
 if __name__ == "__main__":
-    print("Backfilling recent seasons from the NBA API...")
-    g = run()
-    print("\nPer season:")
-    for s, grp in g.groupby("season_label"):
-        print(f"  {s}: {len(grp):>5,} games   home win rate {(grp.homeScore > grp.awayScore).mean():.1%}")
+    import sys
+    if "--players" in sys.argv:
+        print("Backfilling player box scores from the NBA API...")
+        run_players()
+    else:
+        print("Backfilling recent seasons from the NBA API...")
+        g = run()
+        print("\nPer season:")
+        for s, grp in g.groupby("season_label"):
+            print(f"  {s}: {len(grp):>5,} games   home win rate {(grp.homeScore > grp.awayScore).mean():.1%}")

@@ -34,3 +34,8 @@ data/nba_data.db
 
 # --- Logs ---
 logs/*.log
+
+# --- Regenerable caches (rebuild with src.backtest.injuries / .backfill) ---
+data/injuries/
+data/player_stats_recent.csv
+data/games_recent.csv
