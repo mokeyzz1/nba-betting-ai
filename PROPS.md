@@ -156,3 +156,46 @@ And the month breakdown at 5+, which is where the discipline bites:
 Note what a 5-point move means here: the median line is 18.5, so it is a **27% move** — a player downgraded to questionable or on a minutes limit. Only 332 such cases exist in 65 game days. This is a rare-event strategy, and rare events need long samples.
 
 **This is the one open question worth paying for.** The Odds API sells three NBA seasons of props from May 2023 for $59 — roughly 10× this sample, enough to separate +2.25% from +15%. Unlike every other paid option considered in this project, the question is now specific enough to justify it.
+
+
+## Does fading a substantial move produce positive CLV?
+
+The sharper version of the profit question. Closing line value reads an edge in far fewer bets than ROI, so if the over-reaction is real the line should *retrace* after a substantial move.
+
+Method: within each `(date, player, book)` sequence of pre-tip quotes, find the first point where the line has moved ≥2 points from its open, fade it there, and measure where the line finishes. Sign convention matters — an UNDER bet is better with a *higher* line, an OVER bet with a *lower* one.
+
+**Aggregate looks encouraging and scales with move size:**
+
+| move size | n | mean CLV | % positive |
+|---|---|---|---|
+| 2–3 pts | 344 | +0.253 | 42.7% |
+| 3–5 pts | 296 | +0.463 | 55.1% |
+| 5+ pts | 101 | +0.911 | 66.3% |
+
+Overall **+0.426 pts, 2.3σ**, positive in both books.
+
+**It does not survive two checks.**
+
+*Direction.* A genuine over-reaction should be symmetric. It is not:
+
+| we fade | n | mean CLV | σ |
+|---|---|---|---|
+| line moved DOWN → bet OVER | 393 | **+0.875** | 3.2 |
+| line moved UP → bet UNDER | 348 | **−0.080** | −0.3 |
+
+The effect exists only when backing a player whose line collapsed. That is plausibly a real asymmetry — downgrade news causes an overshoot that upgrades have no mirror for — but it halves the strategy and doubles the burden of proof.
+
+*Period.* The dominant month reverses it:
+
+| month | n | mean CLV | σ |
+|---|---|---|---|
+| 2023-03 | 82 | +1.585 | 2.4 |
+| **2023-04** | **456** | **−0.206** | **−0.8** |
+| 2023-05 | 34 | +0.853 | 0.9 |
+| 2023-10 | 169 | +1.485 | 5.8 |
+
+April holds 62% of the sample and is negative. The aggregate is carried by March and October.
+
+**Answer: no.** Fading substantial prop moves does not produce reliable positive CLV on this data. The over-reaction correlation remains real (−0.24 FanDuel, 5.7σ) but it does not convert into a better number at the close, and it does not convert into ROI.
+
+**What would change the answer:** three seasons instead of 65 days. 741 qualifying events, only 393 in the direction that works, split across four months, cannot separate a real 0.9-point CLV edge from two lucky months. This remains the one question in the project where more data is worth buying.
