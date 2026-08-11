@@ -79,3 +79,39 @@ python -m src.props.projection          # live lines vs projection, logs predict
 
 Historical archive downloads to `data/props_raw/` (gitignored — 48 MB, and the
 source repo declares no licence, so it is not redistributed here).
+
+
+## Prop line movement
+
+The strongest signal found anywhere in this project was game-line movement (22σ). Props carry timestamps too — a median of 10 quotes per player-game — so the same question applies.
+
+**The live-quote trap catches this too, and harder.** Using all quotes, movement correlates **+0.81** with the outcome. That is the scoreboard, not a forecast: the line rose because the player was scoring. Restricting to pre-tip quotes:
+
+| cutoff | n | corr(move, points − opening line) |
+|---|---|---|
+| before 23:00 UTC | 1,402 | +0.4860 |
+| 2h+ before | 1,157 | +0.3931 |
+| 3h+ before | 1,068 | +0.2778 |
+
+Still declining as the cutoff moves earlier, so some leakage persists even at the 23:00 UTC reference. The 3h+ figure is genuinely pre-game and plausibly real: a line collapsing from 20.5 to 8.5 means the player was downgraded, and that predicts his output.
+
+**But the move being informative is not the same as it being tradeable** — once the line has moved, the old number is gone. The exploitable question is whether the market misprices *after* moving:
+
+| | correlation |
+|---|---|
+| move vs points − **opening** line | +0.4116 |
+| move vs points − **final** line | **−0.1915** (se 0.0319, 6σ) |
+
+**Negative means the market over-reacts.** After a prop line moves, outcomes tend back the other way relative to the new number. Following the move loses at every threshold (−1.65% to −13.59%), consistent with overshoot.
+
+Fading it looks better and still fails:
+
+| threshold | bets | ROI | ±1 s.e. |
+|---|---|---|---|
+| 2+ pts | 509 | +0.28% | 5.38 |
+| 3+ pts | 388 | +4.45% | 6.32 |
+| 5+ pts | 219 | +12.92% | 7.90 |
+
+By month at the 2+ threshold: **+42.42%, −7.55%, −1.86% — 1 of 3, with the smallest month (n=89) carrying the total.** The headline figure is 1.6σ.
+
+**Status: the most interesting unresolved thing here.** The over-reaction is statistically real at 6σ; it simply does not convert to demonstrable profit on 982 player-games with two or more pre-tip quotes. This is a sample-size limit, not a refutation. More prop history — or forward collection with proper timestamps — would settle it.
