@@ -21,6 +21,21 @@ This finding overrides the earlier version of this document, which ranked cheape
 
 Recorded so nobody re-tests them:
 
+**The decisive one first.** Every other test asked whether the model *beats* the market. The sharper question is whether it adds anything *to* the market, since a weak but independent signal is monetisable even when it loses head to head. Blending the model into the de-vigged market price, walk-forward over 17,709 priced games:
+
+| weight on model | blend log loss | vs market alone |
+|---|---|---|
+| 0.00 (market only) | 0.59155 | — |
+| **0.05** | **0.59151** | **−0.00004** |
+| 0.10 | 0.59156 | +0.00001 |
+| 0.20 | 0.59196 | +0.00041 |
+| 0.50 | 0.59537 | +0.00382 |
+
+The optimal weight is 0.05 and the gain is 0.00004 nats. Against a 4.25% vig an exploitable contribution needs roughly 25–50× that. This should have been the first test run, not the last: it says directly that the model holds no information the price lacks, which is what the .898 correlation, the +0.011 residual and the failed decorrelation were each saying indirectly.
+
+**The −0.82% ROI at a 5% edge threshold is therefore not a near miss that better features close.** It is the return from betting noise at better-than-average prices. NBA moneyline outcome prediction is finished.
+
+
 - **Cheaper venue alone.** Prediction markets save roughly 3 points of vig. At zero vig the model still loses at every threshold below 10%.
 - **Public betting percentages.** The recent odds data carries money-share and ticket-share per side. Following the sharp side (money% exceeding ticket%) returns −7.3% to −12.4%. Fading the public returns −5.8% to −6.3%. Correlation between the sharp signal and the market's own error is −0.028 on 4,426 games: the market has already priced it.
 - **Bigger models.** XGBoost at depth 3 and 5 both scored worse than regularised logistic regression on the same features.
@@ -46,6 +61,20 @@ Recorded so nobody re-tests them:
   Market correlation moved by .001. The book already prices roster shape. A CNN might find interactions these summary statistics miss, so this is evidence rather than proof — but it does not justify days of work, and their result predates a decade of bookmaker modelling (their data is 2007-2014).
 
 - **Optimising for line-movement prediction.** Line movement has two components: information (news, injuries, sharp money correcting a bad number), which predicts outcomes, and flow (the public piling onto popular teams), which does not. Flow is the *more predictable* of the two, so a flexible learner chases it. Gradient boosting reaches movement correlation +0.334 against ridge's +0.234, while its outcome correlation collapses from +0.045 to +0.010. Movement prediction is therefore not a valid proxy target, and the chain "movement corr x 0.187 = outcome corr" holds only for the informative component. Optimise outcome correlation directly.
+
+- **An exploitable bias in the opening spread.** The correlation between the opening spread and the cover margin reads +0.106 (11σ), which looks like favourites being systematically mispriced. It is an artifact: `cover = margin + spread`, so the two share a term. The money test settles it — always backing the underdog against the opening spread returns **−6.48%** over 10,603 bets at a 48.99% win rate against the 52.38% needed, losing in **0 of 11 seasons**. At the closing spread, −4.33%.
+
+- **Switching among major US sports.** Same open/close archive covers NFL, NHL and MLB. On a common footing (probability space, open → close):
+
+  | sport | games | closing vig | move→outcome | market log loss | learned open→close |
+  |---|---|---|---|---|---|
+  | NHL | 13,665 | 3.28% | +0.0639 | 0.6711 | +0.0022 |
+  | MLB | 25,569 | **2.82%** | +0.0387 | 0.6809 | +0.0009 |
+  | NBA | 12,023 | 3.80% | **+0.0861** | **0.5979** | +0.0037 |
+
+  MLB is a point cheaper but its market log loss is 0.681 against a 0.693 coin flip — those sports are close to unforecastable for everyone, bookmaker included. NBA is the only one where outcomes are meaningfully predictable, and it is the most expensive. No major US sport is the soft target.
+
+  This also corrects an earlier claim in this document. "Beat the open, not the close" assumed meaningful room between them. The market improves its log loss by 0.0009 to 0.0037 from open to close — **opening lines are already ~99% as sharp as closing lines.** The room is far smaller than implied.
 
 - **Predicting the market's error directly.** Following Hubáček & Šír, *Beating the market with a bad predictive model* (arXiv:2010.12508), profit does not require beating the market's accuracy — it requires model errors that are *decorrelated* from the market's. Tested by training a ridge regression on our full feature set against the target `home_win - market_fair_prob`, walk-forward over 4,835 games. Correlation between predicted and actual market error: **-0.0057**, against a standard error of 0.0144. Betting the largest predicted mispricings returns -4.76% to -7.15%.
 
@@ -85,15 +114,23 @@ This is the only lever that pays regardless of model quality. A better price is 
 
 ---
 
-### 3. Bet opening lines, not closing lines — *moderate confidence, +1 to 2%*
+### 3. Bet opening lines, not closing lines — *tested, mostly closed*
 
-**Status:** not started. Requires forward data collection.
+**Status:** tested. The premise was largely wrong.
 
-Everything in this repo is graded against **closing** prices, which are the sharpest number a market produces — all information, all money, fully incorporated. Being 1.5 points behind the closing line is a much better result than being 1.5 points behind an opening line.
+The reasoning was that closing prices are the sharpest number a market makes, so a model losing to the close might still beat the open. Free opening lines (SportsbookReview archive, 12,023 NBA games) let this be measured rather than assumed.
 
-Opening numbers are softer, posted with less information and lower limits. A model that loses to the close may still beat the open.
+Two results, pulling opposite ways.
 
-**Work:** log odds at multiple timestamps daily from October, then grade the same predictions against open, mid-day, and close. This costs nothing but time and answers whether the edge exists earlier in the cycle. It also produces the closing-line-value metric that professionals use to judge a model before the money settles.
+**The premise is weaker than assumed.** The market improves its own log loss by only 0.0037 between open and close in NBA — and 0.0009 to 0.0022 in MLB and NHL. Opening lines are already about 99% as sharp as closing lines. There is far less room there than "bet the open" implies.
+
+**But the model does have closing line value.** Correlation between its disagreement with the opening line and the market's subsequent move toward that side is **+0.0792 (8.2σ, n=10,800)**. At a 5% disagreement the line moves the model's way 54.7% of the time, averaging +0.171 points. That is real and it is the only thing in this project that kept measuring significant.
+
+It is still not enough. Betting the opening spread at −110 returns −4.21% (50.2% win rate against the 52.38% needed); the closing spread returns −4.70%. Opening beats closing, consistently with the CLV result, and both lose.
+
+**Best configuration found:** movement model minus its flow component, outcome correlation **+0.0549** against the **~0.115** needed. About 48%.
+
+**What remains here:** CLV is the right metric to track going forward, because it reads an edge in roughly 50 bets where ROI needs on the order of 1,000. Developing it further requires live data — timestamped odds at several points per day — which historical archives cannot supply.
 
 ---
 
