@@ -24,6 +24,27 @@ Recorded so nobody re-tests them:
 - **Cheaper venue alone.** Prediction markets save roughly 3 points of vig. At zero vig the model still loses at every threshold below 10%.
 - **Public betting percentages.** The recent odds data carries money-share and ticket-share per side. Following the sharp side (money% exceeding ticket%) returns −7.3% to −12.4%. Fading the public returns −5.8% to −6.3%. Correlation between the sharp signal and the market's own error is −0.028 on 4,426 games: the market has already priced it.
 - **Bigger models.** XGBoost at depth 3 and 5 both scored worse than regularised logistic regression on the same features.
+- **Decorrelating the model from the bookmaker.** Hubáček, Šourek & Železný, *Exploiting sports-betting market using machine learning* (Int. J. Forecasting, 2019) reports cumulative NBA profit from three ingredients: a decorrelation term in the training loss, a CNN aggregating player-level statistics, and portfolio-theoretic bet sizing. Their claim is that "an accurate model is unprofitable as long as it is correlated with the bookmaker's predictions".
+
+  Implemented by residualising every feature against the de-vigged market probability, sweeping the strength from 0 to 1 over 20,007 priced games. It degrades monotonically:
+
+  | λ | AUC | corr w/ market | ROI @5% |
+  |---|---|---|---|
+  | 0.0 | .7156 | .898 | −0.82% |
+  | 0.4 | .6868 | .771 | −2.08% |
+  | 1.0 | .5409 | .160 | −3.35% |
+
+  The reason is the finding. Our model correlates .898 with the market; remove that component and AUC falls to .541, barely above chance. Decorrelation presupposes the model holds independent information, and ours does not. Same conclusion the residual test reached from the other direction.
+
+- **Player-level information as an independent signal.** The remaining Hubáček ingredient, and the cheap version of it was tested before committing to a CNN. Built roster-*shape* features from 53,539 team-dates — star concentration (top-1 and top-3 production share), depth, production inequality, rotation size — quantities a team power rating cannot express. The decisive question was whether they reduce correlation with the market.
+
+  | | AUC | corr w/ market | residual signal |
+  |---|---|---|---|
+  | team-level only | .7156 | **.898** | +.0088 (1.2σ) |
+  | + roster shape | .7158 | **.899** | +.0132 (1.8σ) |
+
+  Market correlation moved by .001. The book already prices roster shape. A CNN might find interactions these summary statistics miss, so this is evidence rather than proof — but it does not justify days of work, and their result predates a decade of bookmaker modelling (their data is 2007-2014).
+
 - **Optimising for line-movement prediction.** Line movement has two components: information (news, injuries, sharp money correcting a bad number), which predicts outcomes, and flow (the public piling onto popular teams), which does not. Flow is the *more predictable* of the two, so a flexible learner chases it. Gradient boosting reaches movement correlation +0.334 against ridge's +0.234, while its outcome correlation collapses from +0.045 to +0.010. Movement prediction is therefore not a valid proxy target, and the chain "movement corr x 0.187 = outcome corr" holds only for the informative component. Optimise outcome correlation directly.
 
 - **Predicting the market's error directly.** Following Hubáček & Šír, *Beating the market with a bad predictive model* (arXiv:2010.12508), profit does not require beating the market's accuracy — it requires model errors that are *decorrelated* from the market's. Tested by training a ridge regression on our full feature set against the target `home_win - market_fair_prob`, walk-forward over 4,835 games. Correlation between predicted and actual market error: **-0.0057**, against a standard error of 0.0144. Betting the largest predicted mispricings returns -4.76% to -7.15%.
