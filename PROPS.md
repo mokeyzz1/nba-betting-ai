@@ -114,4 +114,45 @@ Fading it looks better and still fails:
 
 By month at the 2+ threshold: **+42.42%, −7.55%, −1.86% — 1 of 3, with the smallest month (n=89) carrying the total.** The headline figure is 1.6σ.
 
-**Status: the most interesting unresolved thing here.** The over-reaction is statistically real at 6σ; it simply does not convert to demonstrable profit on 982 player-games with two or more pre-tip quotes. This is a sample-size limit, not a refutation. More prop history — or forward collection with proper timestamps — would settle it.
+**Correction — the first version of this section mixed books.** The archive carries seven books (barstool, betmgm, betrivers, caesars, draftkings, fanduel, pinnacle) and 60% of player-games are quoted by two or more. Grouping by `(date, player)` without `book_key` measured the spread *between* books as if it were movement over time.
+
+Redone per book, pre-tip only, correlation of the move against `points − final line`:
+
+| book | n | correlation | σ |
+|---|---|---|---|
+| **FanDuel** | 574 | −0.2397 | **5.7** |
+| **DraftKings** | 556 | −0.1858 | **4.4** |
+| Barstool | 292 | −0.1164 | 2.0 |
+| BetMGM | 153 | −0.0870 | 1.1 |
+
+**The over-reaction survives.** It is not a cross-book artifact — it appears independently in both major books at 4–6σ.
+
+Fading it, FanDuel and DraftKings combined:
+
+| threshold | bets | hit % | ROI | ±1 s.e. |
+|---|---|---|---|---|
+| 1+ pts | 985 | 49.54% | −1.22% | 4.00 |
+| 2+ pts | 736 | 51.22% | +4.39% | 4.94 |
+| 3+ pts | 582 | 52.75% | +8.44% | 5.73 |
+| 5+ pts | 332 | 56.93% | +15.16% | 7.12 |
+
+And the month breakdown at 5+, which is where the discipline bites:
+
+| month | bets | ROI |
+|---|---|---|
+| 2023-03 | 38 | +51.78% |
+| **2023-04** | **249** | **+2.25%** |
+| 2023-05 | 18 | −1.16% |
+| 2023-10 | 27 | +93.64% |
+
+**April holds 75% of the sample and returns +2.25%, which is noise.** The headline is carried by 38- and 27-bet months; +93.64% on 27 bets is roughly five lucky wins.
+
+## Status
+
+**Established:** prop lines over-react within a single book. −0.24 at FanDuel (5.7σ), −0.19 at DraftKings (4.4σ), consistent across both, not a book-spread artifact.
+
+**Not established:** that fading it is profitable. The largest reliable subsample says +2.25%.
+
+Note what a 5-point move means here: the median line is 18.5, so it is a **27% move** — a player downgraded to questionable or on a minutes limit. Only 332 such cases exist in 65 game days. This is a rare-event strategy, and rare events need long samples.
+
+**This is the one open question worth paying for.** The Odds API sells three NBA seasons of props from May 2023 for $59 — roughly 10× this sample, enough to separate +2.25% from +15%. Unlike every other paid option considered in this project, the question is now specific enough to justify it.
