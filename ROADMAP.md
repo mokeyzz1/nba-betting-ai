@@ -114,7 +114,7 @@ Two constraints still apply if that ever changes: edge at these magnitudes needs
 
 **Phase 4 — Live loop.** Daily automation for the October start, logging odds at several timestamps so closing-line value can be measured going forward. CLV is the reason to bother: it reads edge in roughly 50 bets where ROI needs on the order of 1,000.
 
-**Known gap in the live path.** `predict_daily.py` currently hardcodes `rest_diff`, `b2b_diff` and the three injury features to zero, because the schedule join and same-day injury fetch are not wired. That is 5 of 15 features frozen at serve time — the same defect this project removed from the Hybrid Elite model, and it must be fixed before the pipeline runs for real.
+**Live path: fixed.** `predict_daily.py` previously hardcoded `rest_diff`, `b2b_diff` and the three injury features to zero — 5 of 15 frozen at serve time, the same defect removed from the Hybrid Elite model. Rest and back-to-backs now derive from each team's last game date in `dataset.current_team_state()`; injuries come from `injury_features.live_burden()`, which fetches the day's official report and applies the same minutes-weighted definition as the backtest. Verified on a mid-season slate: 0 of 15 features constant. A guard now raises if more than a third of features are constant across a slate, so this cannot recur silently.
 
 ## The honest question
 

@@ -28,7 +28,7 @@ import numpy as np
 import pandas as pd
 
 from src.backtest import dataset
-from src.backtest.injury_features import INJURY_FEATURES
+from src.backtest.injury_features import INJURY_FEATURES, live_burden
 from src.backtest.odds import kelly_fraction
 from src.backtest.train import META_PATH, MODEL_PATH
 from src.features.line_shopping import fetch, implied_prob, parse_all
@@ -55,13 +55,37 @@ def _load():
     return joblib.load(MODEL_PATH), json.loads(META_PATH.read_text())
 
 
-def _features_for(home: str, away: str, state: pd.DataFrame) -> dict | None:
-    """Assemble one game's feature row from current team state."""
-    h = state[state["team"] == TEAM_ALIASES.get(home, home)]
-    a = state[state["team"] == TEAM_ALIASES.get(away, away)]
+def _rest(state_row, today: pd.Timestamp) -> tuple[float, float]:
+    """Days since a team's last game, and whether it is on a back-to-back.
+
+    dataset.current_team_state() carries each team's last game date, so rest
+    is derivable rather than assumed. Clipped at 10 to match dataset.py.
+    """
+    last = pd.Timestamp(state_row["date"])
+    days = float((today.normalize() - last.normalize()).days)
+    days = float(np.clip(days, 0, 10))
+    return days, 1.0 if days <= 1 else 0.0
+
+
+def _features_for(home: str, away: str, state: pd.DataFrame,
+                  today: pd.Timestamp, burden: dict) -> dict | None:
+    """Assemble one game's feature row from current team state.
+
+    Every feature the model was trained on is computed here. Earlier this
+    function hardcoded rest, back-to-backs and all three injury features to
+    zero -- 5 of 15 frozen, which is the same defect that made the old Hybrid
+    Elite model worthless. They are now derived from real inputs.
+    """
+    home_full = TEAM_ALIASES.get(home, home)
+    away_full = TEAM_ALIASES.get(away, away)
+    h = state[state["team"] == home_full]
+    a = state[state["team"] == away_full]
     if h.empty or a.empty:
         return None
     h, a = h.iloc[0], a.iloc[0]
+
+    h_rest, h_b2b = _rest(h, today)
+    a_rest, a_b2b = _rest(a, today)
 
     f = {
         "elo_diff": h["elo"] - a["elo"],
@@ -74,13 +98,17 @@ def _features_for(home: str, away: str, state: pd.DataFrame) -> dict | None:
         "off_form_diff": h["pts_10"] - a["opp_pts_10"],
         "def_form_diff": a["pts_10"] - h["opp_pts_10"],
         "season_win_pct_diff": h["season_win_pct"] - a["season_win_pct"],
-        # Rest is unknown until the schedule is joined; league-typical values.
-        "rest_diff": 0.0,
-        "b2b_diff": 0.0,
+        "rest_diff": h_rest - a_rest,
+        "b2b_diff": h_b2b - a_b2b,
     }
-    # Injury features default to neutral when today's report is unavailable.
-    for c in INJURY_FEATURES:
-        f[c] = 0.0
+
+    # Injury burden from today's published report. Sign convention matches
+    # injury_features.attach(): positive means the away side is more depleted.
+    hb = burden.get(home_full, {})
+    ab = burden.get(away_full, {})
+    f["inj_burden_diff"] = ab.get("inj_burden", 0.0) - hb.get("inj_burden", 0.0)
+    f["inj_burden_out_diff"] = ab.get("inj_burden_out", 0.0) - hb.get("inj_burden_out", 0.0)
+    f["inj_listed_diff"] = ab.get("inj_listed", 0.0) - hb.get("inj_listed", 0.0)
     return f
 
 
@@ -97,10 +125,15 @@ def run_predictions(verbose: bool = True) -> pd.DataFrame | None:
     if verbose:
         print(f"Building current team state from history...")
     state = dataset.current_team_state()
+    today = pd.Timestamp(datetime.today().date())
+    burden = live_burden(today, verbose=verbose)
+    if not burden and verbose:
+        print("  WARNING: no injury data today -- injury features will be neutral,\n"
+              "           which understates absences. Predictions are degraded.")
 
     rows, skipped = [], []
     for g in games:
-        f = _features_for(g.home_team, g.away_team, state)
+        f = _features_for(g.home_team, g.away_team, state, today, burden)
         if f is None:
             skipped.append(f"{g.away_team} @ {g.home_team}")
             continue
@@ -129,6 +162,24 @@ def run_predictions(verbose: bool = True) -> pd.DataFrame | None:
         return None
 
     df = pd.DataFrame(rows)
+
+    # The guard the old predictor lacked. A feature that is constant across a
+    # whole slate is a placeholder, not a measurement, and a model fed
+    # placeholders still returns confident-looking probabilities.
+    if len(df) > 2:
+        frozen = [c for c in features if df[c].nunique(dropna=False) <= 1]
+        # Genuinely-constant-by-nature features are exempt only when the whole
+        # slate legitimately shares a value (e.g. nobody on any team is hurt).
+        if len(frozen) > len(features) // 3:
+            raise RuntimeError(
+                f"{len(frozen)} of {len(features)} features are constant across "
+                f"{len(df)} games: {frozen}\n"
+                "That is placeholder data, not measurement. Fix the feature "
+                "source before trusting these predictions."
+            )
+        if frozen and verbose:
+            print(f"  note: {len(frozen)} feature(s) constant today: {frozen}")
+
     df["model_prob_home"] = model.predict_proba(df[features])[:, 1]
     df["edge_home"] = df["model_prob_home"] - df["market_prob_home"]
 

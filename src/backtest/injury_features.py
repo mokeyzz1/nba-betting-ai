@@ -182,6 +182,61 @@ def attach(games: pd.DataFrame, verbose: bool = True) -> pd.DataFrame:
     return g
 
 
+def live_burden(day, verbose: bool = True) -> dict[str, dict[str, float]]:
+    """Today's injury burden per team, for live prediction.
+
+    Fetches the day's report rather than reading the historical cache, so the
+    live path uses the same minutes-weighted definition as the backtest. If no
+    report exists yet, returns {} and the caller must decide -- predicting with
+    silent zeros is what this project spent the day removing.
+    """
+    import pandas as pd
+
+    from src.backtest.injuries import STATUS_WEIGHT, fetch_day
+
+    raw = fetch_day(pd.Timestamp(day).to_pydatetime())
+    if raw is None or len(raw) == 0:
+        if verbose:
+            print(f"  no injury report published for {pd.Timestamp(day).date()}")
+        return {}
+
+    inj = raw.copy()
+    inj.columns = [c.strip().lower().replace(" ", "_") for c in inj.columns]
+    inj = inj[~inj["reason"].astype(str).str.contains("NOT YET SUBMITTED", case=False, na=False)]
+    if inj.empty:
+        return {}
+
+    inj["status"] = inj["current_status"].astype(str).str.strip().str.lower()
+    inj["weight"] = inj["status"].map(STATUS_WEIGHT).fillna(0.0)
+    name = inj["player_name"].astype(str).str.strip()
+    inj["player"] = name.str.split(",", n=1).apply(
+        lambda p: f"{p[1].strip()} {p[0].strip()}" if len(p) == 2 else p[0]
+    ).str.replace(r"\s+", " ", regex=True).str.strip()
+    inj["team"] = inj["team"].astype(str).str.strip()
+
+    mins = _player_minutes()
+    latest = (mins.sort_values("date").groupby("player", as_index=False).last()
+              [["player", "mpg_recent", "date"]])
+    cutoff = pd.Timestamp(day) - pd.Timedelta(days=45)
+    latest.loc[latest["date"] < cutoff, "mpg_recent"] = np.nan
+
+    merged = inj.merge(latest[["player", "mpg_recent"]], on="player", how="left")
+    merged["mpg_recent"] = merged["mpg_recent"].fillna(0.0)
+    merged["burden"] = merged["weight"] * merged["mpg_recent"]
+    merged["burden_out"] = np.where(merged["status"].eq("out"), merged["mpg_recent"], 0.0)
+
+    agg = merged.groupby("team").agg(
+        inj_burden=("burden", "sum"),
+        inj_burden_out=("burden_out", "sum"),
+        inj_listed=("player", "count"))
+    agg["inj_burden"] /= TEAM_MINUTES_PER_GAME
+    agg["inj_burden_out"] /= TEAM_MINUTES_PER_GAME
+
+    if verbose:
+        print(f"  injury report: {len(agg)} teams, {int(agg.inj_listed.sum())} players listed")
+    return agg.to_dict("index")
+
+
 if __name__ == "__main__":
     from src.backtest import dataset
     print("Building injury features...")
